@@ -1,0 +1,910 @@
+{
+  "slug": "warlock",
+  "name": "Warlock",
+  "trees": [
+    {
+      "name": "Affliction",
+      "icon": "spell_shadow_unsummonbuilding",
+      "maxPoints": 47,
+      "talents": [
+        {
+          "i": 1,
+          "icon": "spell_shadow_unsummonbuilding",
+          "name": "Suppression",
+          "ranks": 5,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Reduces the chance for enemies to resist your Affliction spells by {0}%.",
+          "values": [
+            [
+              "2",
+              "4",
+              "6",
+              "8",
+              "10"
+            ]
+          ]
+        },
+        {
+          "i": 2,
+          "icon": "spell_shadow_abominationexplosion",
+          "name": "Improved Corruption",
+          "ranks": 5,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Reduces the casting time of your Corruption spell by {0} sec.",
+          "values": [
+            [
+              "0.3",
+              "0.6",
+              "0.9",
+              "1.2",
+              "1.5"
+            ]
+          ]
+        },
+        {
+          "i": 3,
+          "icon": "ability_rogue_envelopingshadows",
+          "name": "Sinister Pursuit",
+          "ranks": 3,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases the movement speed of your demons by {0}% for 3 sec after they attack a target affected by Affliction effects.",
+          "values": [
+            [
+              "5",
+              "10",
+              "15"
+            ]
+          ]
+        },
+        {
+          "i": 4,
+          "icon": "spell_shadow_curseofmannoroth",
+          "name": "Improved Curse of Weakness",
+          "ranks": 2,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases the attack speed reduction of your Curse of Weakness by {0}%.",
+          "values": [
+            [
+              "3",
+              "5"
+            ]
+          ]
+        },
+        {
+          "i": 5,
+          "icon": "spell_shadow_soulleech_1",
+          "name": "Resilient Shadows",
+          "ranks": 3,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Reduces the chance your Affliction spells will be dispelled by an additional {0}%.",
+          "values": [
+            [
+              "5",
+              "10",
+              "15"
+            ]
+          ]
+        },
+        {
+          "i": 6,
+          "icon": "spell_shadow_burningspirit",
+          "name": "Improved Life Tap",
+          "ranks": 2,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases the amount of Mana awarded by your Life Tap spell by {0}%.",
+          "values": [
+            [
+              "10",
+              "20"
+            ]
+          ]
+        },
+        {
+          "i": 7,
+          "icon": "spell_shadow_lifedrain02",
+          "name": "Improved Drains",
+          "ranks": 2,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases the effectiveness of your Drain Soul, Drain Life and Drain Mana by {0}%.",
+          "values": [
+            [
+              "5",
+              "10"
+            ]
+          ]
+        },
+        {
+          "i": 8,
+          "icon": "spell_shadow_curseofsargeras",
+          "name": "Improved Curse of Agony",
+          "ranks": 3,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases the damage done by your Curse of Agony by {0}%.",
+          "values": [
+            [
+              "3",
+              "6",
+              "10"
+            ]
+          ]
+        },
+        {
+          "i": 9,
+          "icon": "spell_shadow_fingerofdeath",
+          "name": "Fel Concentration",
+          "ranks": 2,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Gives your Affliction spells a {0}% chance to not lose casting time when you take damage.",
+          "values": [
+            [
+              "35",
+              "70"
+            ]
+          ]
+        },
+        {
+          "i": 10,
+          "icon": "spell_shadow_grimward",
+          "name": "Curse of Exhaustion",
+          "ranks": 1,
+          "requires": 10,
+          "reqRanks": 1,
+          "description": "Reduces the target's movement speed by 10% for 12 sec.  Only one Curse per Warlock can be active on any one target.",
+          "values": []
+        },
+        {
+          "i": 12,
+          "icon": "spell_shadow_callofbone",
+          "name": "Grim Reach",
+          "ranks": 2,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases the range of your Affliction spells by {0}%.",
+          "values": [
+            [
+              "10",
+              "20"
+            ]
+          ]
+        },
+        {
+          "i": 13,
+          "icon": "spell_shadow_twilight",
+          "name": "Nightfall",
+          "ranks": 2,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Gives your Corruption, Dark Harvest and Drain spells a {0}% chance to cause you to enter a Shadow Trance state after damaging the opponent.  The Shadow Trance state reduces the casting time of your next Shadow Bolt spell by 100% and makes it guaranteed to land.",
+          "values": [
+            [
+              "2",
+              "4"
+            ]
+          ]
+        },
+        {
+          "i": 15,
+          "icon": "spell_shadow_haunting",
+          "name": "Soul Siphon",
+          "ranks": 3,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases the damage of your Drain Soul, Dark Harvest and Death Coil by an additional {0}% for each of your Affliction effects on the target, up to a maximum of 4 effects.",
+          "values": [
+            [
+              "2",
+              "4",
+              "6"
+            ]
+          ]
+        },
+        {
+          "i": 16,
+          "icon": "spell_shadow_detectinvisibility",
+          "name": "Rapid Deterioration",
+          "ranks": 2,
+          "requires": 17,
+          "reqRanks": 1,
+          "description": "Increases the casting speed of your Affliction spells by 6%.  In addition, casting speed increase effects increase the tick speed of your damage over time and channeled Affliction spells with {0}% efficiency, reducing their duration.",
+          "values": [
+            [
+              "50",
+              "100"
+            ]
+          ]
+        },
+        {
+          "i": 17,
+          "icon": "spell_shadow_requiem",
+          "name": "Siphon Life",
+          "ranks": 1,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Transfers 150 Health from the target to the caster over 30 sec.",
+          "values": []
+        },
+        {
+          "i": 18,
+          "icon": "spell_shadow_grimward",
+          "name": "Improved Curse of Exhaustion",
+          "ranks": 2,
+          "requires": 10,
+          "reqRanks": 1,
+          "description": "Increases the speed reduction of your Curse of Exhaustion by {0}%.",
+          "values": [
+            [
+              "15",
+              "30"
+            ]
+          ]
+        },
+        {
+          "i": 19,
+          "icon": "spell_shadow_curseofachimonde",
+          "name": "Malediction",
+          "ranks": 1,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Your Curse of Agony can be used alongside your other curses, except Curse of Doom.\n\nApplying Curse of Recklessness, Curse of Shadows, or Curse of Elements also afflicts the target with the highest rank of your Curse of Agony.",
+          "values": []
+        },
+        {
+          "i": 21,
+          "icon": "spell_shadow_shadetruesight",
+          "name": "Shadow Mastery",
+          "ranks": 5,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases the damage dealt or life drained by your Shadow spells by {0}%.",
+          "values": [
+            [
+              "2",
+              "4",
+              "6",
+              "8",
+              "10"
+            ]
+          ]
+        },
+        {
+          "i": 25,
+          "icon": "spell_shadow_soulleech",
+          "name": "Dark Harvest",
+          "ranks": 1,
+          "requires": 21,
+          "reqRanks": 5,
+          "description": "Reaps the target's life, dealing 704 Shadow damage over 8 sec. While channeling, the time between periodic ticks of your Affliction spells on the target is reduced by 30%. If the target dies while channeling, the cooldown of Dark Harvest is reset.",
+          "values": []
+        }
+      ]
+    },
+    {
+      "name": "Demonology",
+      "icon": "spell_shadow_curseoftounges",
+      "maxPoints": 48,
+      "talents": [
+        {
+          "i": 1,
+          "icon": "inv_stone_04",
+          "name": "Master Conjuror",
+          "ranks": 2,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases the amount of Health restored by your Healthstone by {0}% and increases the Health and Mana your Soulstone target is resurrected with by {1}%.",
+          "values": [
+            [
+              "10",
+              "20"
+            ],
+            [
+              "10",
+              "20"
+            ]
+          ]
+        },
+        {
+          "i": 2,
+          "icon": "spell_shadow_metamorphosis",
+          "name": "Demonic Embrace",
+          "ranks": 5,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases your total Stamina by {0}% but reduces your total Spirit by {1}%.",
+          "values": [
+            [
+              "3",
+              "6",
+              "9",
+              "12",
+              "15"
+            ],
+            [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          ]
+        },
+        {
+          "i": 3,
+          "icon": "trade_archaeology_highbornesoulmirror",
+          "name": "Soul Entrapment",
+          "ranks": 3,
+          "requires": null,
+          "reqRanks": null,
+          "description": "While you have no demon under your control, all damage dealt is increased by {0}%.",
+          "values": [
+            [
+              "2",
+              "4",
+              "6"
+            ]
+          ]
+        },
+        {
+          "i": 4,
+          "icon": "spell_shadow_lifedrain",
+          "name": "Soul Funnel",
+          "ranks": 2,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases the amount of Health transferred by your Health Funnel by {0}% of your demon's missing Health and the Mana transferred by your Mana Funnel by {1}% of your demon's missing Mana. This additional transfer drains 30% of that amount from you.",
+          "values": [
+            [
+              "10",
+              "20"
+            ],
+            [
+              "10",
+              "20"
+            ]
+          ]
+        },
+        {
+          "i": 5,
+          "icon": "spell_shadow_ragingscream",
+          "name": "Demonic Aegis",
+          "ranks": 3,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases the effectiveness of your Demon Armor spell by {0}%.",
+          "values": [
+            [
+              "20",
+              "40",
+              "60"
+            ]
+          ]
+        },
+        {
+          "i": 6,
+          "icon": "spell_holy_magicalsentry",
+          "name": "Fel Intellect",
+          "ranks": 3,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases your demon's Intellect by {0}% of your total Intellect and allows {1}% of its Mana regeneration to continue while casting.",
+          "values": [
+            [
+              "10",
+              "20",
+              "30"
+            ],
+            [
+              "5",
+              "10",
+              "15"
+            ]
+          ]
+        },
+        {
+          "i": 9,
+          "icon": "spell_nature_removecurse",
+          "name": "Fel Domination",
+          "ranks": 1,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Your next Common demon summoning spell has its casting time reduced by 4.5 sec and its Mana cost reduced by 40%.",
+          "values": []
+        },
+        {
+          "i": 10,
+          "icon": "spell_shadow_antishadow",
+          "name": "Fel Stamina",
+          "ranks": 5,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases your demon's Stamina by {0}% of your total Stamina and reduces its chance to be critically struck by {1}%.",
+          "values": [
+            [
+              "10",
+              "20",
+              "30",
+              "40",
+              "50"
+            ],
+            [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          ]
+        },
+        {
+          "i": 11,
+          "icon": "spell_shadow_psychicscream",
+          "name": "Demonic Sacrifice",
+          "ranks": 1,
+          "requires": 3,
+          "reqRanks": 3,
+          "description": "When activated, sacrifices your summoned demon to grant you an effect. The effect is canceled if any demon is summoned or enslaved.\n\nImp: Increases spell damage done by 4%.\n\nVoidwalker: Restores 3% of total Health every 4 sec.\n\nSuccubus: Reduces threat generated by 10%.\n\nFelhunter: Restores 3% of total Mana every 4 sec.",
+          "values": []
+        },
+        {
+          "i": 12,
+          "icon": "inv_jewelry_talisman_fireice",
+          "name": "Improved Stones",
+          "ranks": 2,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases the effectiveness of your Felstone, Wrathstone, Voidstone, and Spellstone by {0}%, and increases the critical strike chance bonus of your Firestone by {1}%.",
+          "values": [
+            [
+              "25",
+              "50"
+            ],
+            [
+              "50",
+              "100"
+            ]
+          ]
+        },
+        {
+          "i": 13,
+          "icon": "spell_shadow_impphaseshift",
+          "name": "Master Summoner",
+          "ranks": 2,
+          "requires": 9,
+          "reqRanks": 1,
+          "description": "Reduces the casting time of your Imp, Voidwalker, Succubus and Felhunter summoning spells by {0} sec and their Mana cost by {1}%.  In addition, reduces the cooldown of your Inferno and Demon Gate spells by {2}%.",
+          "values": [
+            [
+              "2",
+              "4"
+            ],
+            [
+              "30",
+              "60"
+            ],
+            [
+              "25",
+              "50"
+            ]
+          ]
+        },
+        {
+          "i": 14,
+          "icon": "inv_misc_book_06",
+          "name": "Nether Studies",
+          "ranks": 3,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases the effect of your Succubus' Seduction, your Voidwalker's Torment, your Imp's Blood Pact, and your Felhunter's Tainted Blood spells by {0}%.",
+          "values": [
+            [
+              "15",
+              "30",
+              "45"
+            ]
+          ]
+        },
+        {
+          "i": 15,
+          "icon": "spell_shadow_shadowworddominate",
+          "name": "Unholy Power",
+          "ranks": 3,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases the damage done by your demons by {0}%.",
+          "values": [
+            [
+              "5",
+              "10",
+              "15"
+            ]
+          ]
+        },
+        {
+          "i": 17,
+          "icon": "ability_warlock_power_overwhelming",
+          "name": "Power Overwhelming",
+          "ranks": 1,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Channel energy into your demon, breaking all crowd control effects and increasing its damage dealt by 20% for 10 sec. The demon takes 40% of its base health as damage over the duration.",
+          "values": []
+        },
+        {
+          "i": 18,
+          "icon": "spell_shadow_curseoftounges",
+          "name": "Demonic Precision",
+          "ranks": 3,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Your demons gain {0}% increased chance to hit and critically strike, and they also inherit {1}% of your spell hit and crit chance as melee and spell hit and crit chance, respectively.",
+          "values": [
+            [
+              "1",
+              "2",
+              "3"
+            ],
+            [
+              "30",
+              "60",
+              "90"
+            ]
+          ]
+        },
+        {
+          "i": 21,
+          "icon": "spell_shadow_shadowpact",
+          "name": "Master Demonologist",
+          "ranks": 5,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Grants both the Warlock and the summoned demon an effect as long as that demon is active.\n\nImp - Reduces spell costs by {0}%.\n\nVoidwalker - Reduces physical damage taken by {1}%.\n\nSuccubus - Increases all damage done by {2}%.\n\nFelhunter - Increases all resistances by 0.\n\nGreater Demons - Increases spell critical chance by {3}%, but reduces healing received by {4}%.",
+          "values": [
+            [
+              "3",
+              "6",
+              "9",
+              "12",
+              "15"
+            ],
+            [
+              "2",
+              "4",
+              "6",
+              "8",
+              "10"
+            ],
+            [
+              "2",
+              "4",
+              "6",
+              "8",
+              "10"
+            ],
+            [
+              "2",
+              "4",
+              "6",
+              "8",
+              "10"
+            ],
+            [
+              "8",
+              "16",
+              "24",
+              "32",
+              "40"
+            ]
+          ]
+        },
+        {
+          "i": 22,
+          "icon": "ability_warlock_demonicpower",
+          "name": "Unleashed Potential",
+          "ranks": 3,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Your direct damage spell critical strikes allow your demon to benefit from {0}% of your Fire and Shadow spell bonus damage for 20 sec. Each tick of your funnel spells refreshes its duration. Stacks up to 3 times.",
+          "values": [
+            [
+              "5",
+              "10",
+              "15"
+            ]
+          ]
+        },
+        {
+          "i": 25,
+          "icon": "spell_shadow_gathershadows",
+          "name": "Soul Link",
+          "ranks": 1,
+          "requires": 21,
+          "reqRanks": 5,
+          "description": "While a demon is under your control, the damage dealt by you and your demon is increased by 5%. In addition, 25% of all damage you take is taken by your demon.  Your Greater and Enslaved Demons can no longer break free from your control early.",
+          "values": []
+        }
+      ]
+    },
+    {
+      "name": "Destruction",
+      "icon": "spell_fire_incinerate",
+      "maxPoints": 51,
+      "talents": [
+        {
+          "i": 1,
+          "icon": "spell_shadow_shadowbolt",
+          "name": "Shadow Vulnerability",
+          "ranks": 5,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Your Shadow Bolt and Drain Soul have a {0}% chance to increase Shadow damage dealt to the target by 20% for 10 sec, with a higher chance to trigger on critical hits.",
+          "values": [
+            [
+              "2",
+              "4",
+              "6",
+              "8",
+              "10"
+            ]
+          ]
+        },
+        {
+          "i": 2,
+          "icon": "spell_fire_windsofwoe",
+          "name": "Cataclysm",
+          "ranks": 5,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Reduces the Mana cost of your Destruction spells by {0}%.",
+          "values": [
+            [
+              "2",
+              "4",
+              "6",
+              "8",
+              "10"
+            ]
+          ]
+        },
+        {
+          "i": 4,
+          "icon": "spell_shadow_curseoftounges",
+          "name": "Demonic Swiftness",
+          "ranks": 2,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Reduces the casting time of your Imp's Firebolt spell by {0} sec and reduces the cooldown of your Succubus' Lash of Pain spell by {1} sec.",
+          "values": [
+            [
+              "0.3",
+              "0.5"
+            ],
+            [
+              "3",
+              "6"
+            ]
+          ]
+        },
+        {
+          "i": 5,
+          "icon": "spell_shadow_deathpact",
+          "name": "Bane",
+          "ranks": 5,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Reduces the casting time of your Shadow Bolt and Immolate spells by {0} sec and your Soul Fire spell by {1} sec.",
+          "values": [
+            [
+              "0.1",
+              "0.2",
+              "0.3",
+              "0.4",
+              "0.5"
+            ],
+            [
+              "0.4",
+              "0.8",
+              "1.2",
+              "1.6",
+              "2"
+            ]
+          ]
+        },
+        {
+          "i": 6,
+          "icon": "spell_fire_fire",
+          "name": "Aftermath",
+          "ranks": 3,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases the periodic damage of your Immolate spell by {0}% and gives your Destruction spells a {1}% chance to slow the target by 50% for 5 sec.",
+          "values": [
+            [
+              "2",
+              "4",
+              "6"
+            ],
+            [
+              "4",
+              "7",
+              "10"
+            ]
+          ]
+        },
+        {
+          "i": 8,
+          "icon": "spell_fire_lavaspawn",
+          "name": "Intensity",
+          "ranks": 2,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Gives your Fire spells a {0}% chance to not lose casting time when you take damage.",
+          "values": [
+            [
+              "35",
+              "70"
+            ]
+          ]
+        },
+        {
+          "i": 9,
+          "icon": "spell_shadow_scourgebuild",
+          "name": "Shadowburn",
+          "ranks": 1,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Instantly blasts the target for 91 to 103 Shadow damage.  If the target dies within 5 sec of Shadowburn, and yields experience or honor, the caster gains a Soul Shard.",
+          "values": []
+        },
+        {
+          "i": 10,
+          "icon": "spell_fire_flameshock",
+          "name": "Devastation",
+          "ranks": 5,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases the critical strike chance of your Destruction spells by {0}%.",
+          "values": [
+            [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          ]
+        },
+        {
+          "i": 12,
+          "icon": "spell_fire_volcano",
+          "name": "Pyroclasm",
+          "ranks": 2,
+          "requires": 8,
+          "reqRanks": 2,
+          "description": "Gives your Rain of Fire, Hellfire, Conflagrate, and Soul Fire spells a {0}% chance to stun the target for 3 sec.",
+          "values": [
+            [
+              "13",
+              "26"
+            ]
+          ]
+        },
+        {
+          "i": 13,
+          "icon": "spell_shadow_corpseexplode",
+          "name": "Destructive Reach",
+          "ranks": 2,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases the range of your Destruction spells by {0}% and the radius of your Hellfire by {1}%.",
+          "values": [
+            [
+              "10",
+              "20"
+            ],
+            [
+              "10",
+              "20"
+            ]
+          ]
+        },
+        {
+          "i": 15,
+          "icon": "spell_fire_soulburn",
+          "name": "Improved Searing Pain",
+          "ranks": 5,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases the critical strike chance of your Searing Pain spell by {0}%.",
+          "values": [
+            [
+              "2",
+              "4",
+              "6",
+              "8",
+              "10"
+            ]
+          ]
+        },
+        {
+          "i": 16,
+          "icon": "spell_fire_fireball02",
+          "name": "Improved Soul Fire",
+          "ranks": 2,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Your Soul Fire has a {0}% chance to refund a Soul Shard and increase your Fire damage by 10% for 30 sec.",
+          "values": [
+            [
+              "50",
+              "100"
+            ]
+          ]
+        },
+        {
+          "i": 17,
+          "icon": "spell_fire_immolation",
+          "name": "Improved Immolate",
+          "ranks": 5,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases the damage of your Immolate spell by {0}%.",
+          "values": [
+            [
+              "4",
+              "8",
+              "12",
+              "16",
+              "20"
+            ]
+          ]
+        },
+        {
+          "i": 18,
+          "icon": "spell_shadow_shadowwordpain",
+          "name": "Ruin",
+          "ranks": 1,
+          "requires": 10,
+          "reqRanks": 5,
+          "description": "Increases the critical strike damage bonus of your Destruction spells by 100%.",
+          "values": []
+        },
+        {
+          "i": 22,
+          "icon": "spell_fire_selfdestruct",
+          "name": "Emberstorm",
+          "ranks": 5,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases the damage done by your Fire spells by {0}%.",
+          "values": [
+            [
+              "2",
+              "4",
+              "6",
+              "8",
+              "10"
+            ]
+          ]
+        },
+        {
+          "i": 25,
+          "icon": "spell_fire_fireball",
+          "name": "Conflagrate",
+          "ranks": 1,
+          "requires": 17,
+          "reqRanks": 5,
+          "description": "Ignites the target, dealing 249 to 315 Fire damage and consuming 3 sec of your Immolate spell to deal an amount of damage equal to it.",
+          "values": []
+        }
+      ]
+    }
+  ]
+}

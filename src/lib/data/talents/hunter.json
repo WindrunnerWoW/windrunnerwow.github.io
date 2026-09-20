@@ -1,0 +1,950 @@
+{
+  "slug": "hunter",
+  "name": "Hunter",
+  "trees": [
+    {
+      "name": "Beast Mastery",
+      "icon": "ability_hunter_beasttaming",
+      "maxPoints": 49,
+      "talents": [
+        {
+          "i": 1,
+          "icon": "spell_nature_ravenform",
+          "name": "Swift Aspects",
+          "ranks": 5,
+          "requires": null,
+          "reqRanks": null,
+          "description": "While Aspect of the Hawk is active, all normal ranged attacks have a 10% chance of increasing ranged attack speed by {0}% for 12 sec.  While Aspect of the Wolf is active, all normal melee attacks have a 10% chance of increasing melee attack speed by {1}% for 12 sec.",
+          "values": [
+            [
+              "3",
+              "6",
+              "9",
+              "12",
+              "15"
+            ],
+            [
+              "3",
+              "6",
+              "9",
+              "12",
+              "15"
+            ]
+          ]
+        },
+        {
+          "i": 2,
+          "icon": "spell_nature_reincarnation",
+          "name": "Endurance Training",
+          "ranks": 5,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Adds {0}% of your Stamina to the Stamina of your pets and increases the Health of your pets by {1}%.",
+          "values": [
+            [
+              "6",
+              "12",
+              "18",
+              "24",
+              "30"
+            ],
+            [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          ]
+        },
+        {
+          "i": 4,
+          "icon": "ability_eyeoftheowl",
+          "name": "Improved Eyes of the Beast",
+          "ranks": 2,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases the duration of your Eyes of the Beast by {0} sec.\n\nWhile channeling Eyes of the Beast, your pet deals {1}% additional damage and gains {2}% increased Focus regeneration.",
+          "values": [
+            [
+              "30",
+              "60"
+            ],
+            [
+              "15",
+              "30"
+            ],
+            [
+              "15",
+              "30"
+            ]
+          ]
+        },
+        {
+          "i": 5,
+          "icon": "ability_hunter_aspectofthemonkey",
+          "name": "Improved Primal Aspects",
+          "ranks": 3,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases the Dodge bonus of your Aspect of the Monkey by {0}%. While Aspect of the Wolf is active, you're healed for {1}% of your melee damage.",
+          "values": [
+            [
+              "2",
+              "4",
+              "6"
+            ],
+            [
+              "2",
+              "4",
+              "6"
+            ]
+          ]
+        },
+        {
+          "i": 6,
+          "icon": "inv_misc_pelt_bear_03",
+          "name": "Thick Hide",
+          "ranks": 3,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Adds {0}% of your armor value from items to the armor value of your pets and increases the armor value of your pets by {1}%.",
+          "values": [
+            [
+              "12",
+              "24",
+              "36"
+            ],
+            [
+              "4",
+              "7",
+              "10"
+            ]
+          ]
+        },
+        {
+          "i": 7,
+          "icon": "ability_hunter_beastsoothe",
+          "name": "Improved Revive Pet",
+          "ranks": 2,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Revive Pet's casting time is reduced by {0} sec, mana cost is reduced by {1}%, and increases the health your pet returns with by an additional {2}%.",
+          "values": [
+            [
+              "3",
+              "6"
+            ],
+            [
+              "20",
+              "40"
+            ],
+            [
+              "15",
+              "30"
+            ]
+          ]
+        },
+        {
+          "i": 8,
+          "icon": "ability_mount_jungletiger",
+          "name": "Pathfinding",
+          "ranks": 2,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases the speed bonus of your Aspect of the Cheetah and Aspect of the Pack by {0}% and increases your pet's movement speed by {1}%.",
+          "values": [
+            [
+              "3",
+              "6"
+            ],
+            [
+              "15",
+              "30"
+            ]
+          ]
+        },
+        {
+          "i": 9,
+          "icon": "spell_coordinated_assault_1",
+          "name": "Coordinated Assault",
+          "ranks": 1,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Hitting an enemy with Arcane Shot, Steady Shot or Raptor Strike causes your pet's next attack within 6 sec to also perform an attack that deals Physical damage equal to 30% of its Attack Power.  This effect can trigger only once every 3 sec.",
+          "values": []
+        },
+        {
+          "i": 10,
+          "icon": "ability_bullrush",
+          "name": "Unleashed Fury",
+          "ranks": 5,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases the damage done by your pets by {0}%.",
+          "values": [
+            [
+              "4",
+              "8",
+              "12",
+              "16",
+              "20"
+            ]
+          ]
+        },
+        {
+          "i": 12,
+          "icon": "spell_nature_abolishmagic",
+          "name": "Bestial Discipline",
+          "ranks": 2,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases the Focus regeneration of your pets by {0} each tick and reduces the cooldown of your pets' special ability by {1}%.",
+          "values": [
+            [
+              "2",
+              "5"
+            ],
+            [
+              "10",
+              "20"
+            ]
+          ]
+        },
+        {
+          "i": 13,
+          "icon": "ability_hunter_mendpet",
+          "name": "Improved Mend Pet",
+          "ranks": 2,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases amount you heal your pet with Mend Pet by {0}% and gives the spell a {1}% chance of cleansing 1 Curse, Disease, Magic or Poison effect from the pet each tick.",
+          "values": [
+            [
+              "20",
+              "40"
+            ],
+            [
+              "15",
+              "50"
+            ]
+          ]
+        },
+        {
+          "i": 14,
+          "icon": "inv_misc_monsterclaw_04",
+          "name": "Ferocity",
+          "ranks": 5,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases the critical strike chance of your pets by {0}%.",
+          "values": [
+            [
+              "3",
+              "6",
+              "9",
+              "12",
+              "15"
+            ]
+          ]
+        },
+        {
+          "i": 16,
+          "icon": "ability_devour",
+          "name": "Intimidation",
+          "ranks": 1,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Command your pet to intimidate the target on the next successful melee attack, stunning the target for 3 sec, and increasing the pet's threat generation by 50% for 8 sec.",
+          "values": []
+        },
+        {
+          "i": 17,
+          "icon": "ability_hunter_killcommand",
+          "name": "Kill Command",
+          "ranks": 1,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Give the command to kill, removing any crowd control effects from your pet and causing your pet's next 2 abilities within 10 sec to be guaranteed to critically strike with 50% increased critical strike damage if that ability is capable of striking critically.",
+          "values": []
+        },
+        {
+          "i": 19,
+          "icon": "ability_druid_rake",
+          "name": "Bestial Precision",
+          "ranks": 2,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases the physical hit chance of your pets by {0}% and the spell hit chance of your pets by {1}%. In addition, increases the weapon skill of your pets by {2}.",
+          "values": [
+            [
+              "4",
+              "8"
+            ],
+            [
+              "9",
+              "18"
+            ],
+            [
+              "5",
+              "10"
+            ]
+          ]
+        },
+        {
+          "i": 20,
+          "icon": "ability_druid_demoralizingroar",
+          "name": "Spirit Bond",
+          "ranks": 2,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Your pet gains melee attack power equal to {0}% of your ranged attack power and spell power equal to {1}% of your ranged attack power. While your pet is active, you and your pet will regenerate {2}% of total health every 5 sec.",
+          "values": [
+            [
+              "12",
+              "25"
+            ],
+            [
+              "7",
+              "15"
+            ],
+            [
+              "1",
+              "2"
+            ]
+          ]
+        },
+        {
+          "i": 22,
+          "icon": "inv_misc_monsterclaw_03",
+          "name": "Frenzy",
+          "ranks": 5,
+          "requires": 14,
+          "reqRanks": 5,
+          "description": "Gives your pet a {0}% chance to gain a 30% attack speed increase for 8 sec after dealing a critical strike.",
+          "values": [
+            [
+              "20",
+              "40",
+              "60",
+              "80",
+              "100"
+            ]
+          ]
+        },
+        {
+          "i": 25,
+          "icon": "inv_misc_food_66",
+          "name": "Baited Shot",
+          "ranks": 1,
+          "requires": 17,
+          "reqRanks": 1,
+          "description": "An instant shot that deals 125% weapon damage and attaches bait to the target, causing them to take 15% more damage from your pet. Your pet’s attacks generate 5 Focus for 8 sec. Can only be used after your pet critically strikes a target. Focus generation can only occur once every 2 sec.",
+          "values": []
+        }
+      ]
+    },
+    {
+      "name": "Marksmanship",
+      "icon": "ability_marksmanship",
+      "maxPoints": 52,
+      "talents": [
+        {
+          "i": 1,
+          "icon": "spell_frost_stun",
+          "name": "Improved Concussive Shot",
+          "ranks": 5,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Gives your Concussive Shot a {0}% chance to stun the target for 3 sec.",
+          "values": [
+            [
+              "4",
+              "8",
+              "12",
+              "16",
+              "20"
+            ]
+          ]
+        },
+        {
+          "i": 2,
+          "icon": "spell_frost_wizardmark",
+          "name": "Efficiency",
+          "ranks": 5,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Reduces the Mana cost of your Shots and Stings by {0}%.",
+          "values": [
+            [
+              "2",
+              "4",
+              "6",
+              "8",
+              "10"
+            ]
+          ]
+        },
+        {
+          "i": 5,
+          "icon": "ability_hunter_quickshot",
+          "name": "Improved Stings",
+          "ranks": 5,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases the damage done by your Serpent Sting by {0}% and increases the mana drained by Viper Sting by {1}%.",
+          "values": [
+            [
+              "6",
+              "12",
+              "18",
+              "24",
+              "30"
+            ],
+            [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          ]
+        },
+        {
+          "i": 6,
+          "icon": "ability_searingarrow",
+          "name": "Lethal Shots",
+          "ranks": 5,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases your critical strike chance with ranged weapons by {0}%.",
+          "values": [
+            [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          ]
+        },
+        {
+          "i": 8,
+          "icon": "ability_townwatch",
+          "name": "Hawk Eye",
+          "ranks": 2,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases the range of your ranged weapons by {0} yards.",
+          "values": [
+            [
+              "3",
+              "6"
+            ]
+          ]
+        },
+        {
+          "i": 9,
+          "icon": "ability_hunter_criticalshot",
+          "name": "Improved Scorpid Sting",
+          "ranks": 2,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Scorpid String reduces enemy attack speed by an additional {0}% and reduces their damage done by an additional {1}%.",
+          "values": [
+            [
+              "5",
+              "10"
+            ],
+            [
+              "1",
+              "2"
+            ]
+          ]
+        },
+        {
+          "i": 11,
+          "icon": "ability_hunter_steadyshot",
+          "name": "Steady Shot",
+          "ranks": 1,
+          "requires": null,
+          "reqRanks": null,
+          "description": "A precise shot with a ranged weapon that strikes the target for 60% weapon damage plus an additional 10 damage.",
+          "values": []
+        },
+        {
+          "i": 12,
+          "icon": "ability_hunter_snipershot",
+          "name": "Improved Hunter's Mark",
+          "ranks": 3,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases the Ranged Attack Power bonus of your Hunter's Mark spell by {0}%.",
+          "values": [
+            [
+              "5",
+              "10",
+              "15"
+            ]
+          ]
+        },
+        {
+          "i": 13,
+          "icon": "ability_impalingbolt",
+          "name": "Swiftshot",
+          "ranks": 3,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Reduces the cooldown of your Arcane Shot and Aimed Shot by {0} sec.",
+          "values": [
+            [
+              "0.3",
+              "0.6",
+              "1"
+            ]
+          ]
+        },
+        {
+          "i": 14,
+          "icon": "ability_piercedamage",
+          "name": "Mortal Shots",
+          "ranks": 5,
+          "requires": 6,
+          "reqRanks": 5,
+          "description": "Increases your ranged weapon critical strike damage bonus by {0}%.",
+          "values": [
+            [
+              "6",
+              "12",
+              "18",
+              "24",
+              "30"
+            ]
+          ]
+        },
+        {
+          "i": 16,
+          "icon": "ability_golemstormbolt",
+          "name": "Scatter Shot",
+          "ranks": 1,
+          "requires": null,
+          "reqRanks": null,
+          "description": "A short-range shot that deals 50% weapon damage and disorients the target for 4 sec.  Any damage caused will remove the effect.  Turns off your attack when used.",
+          "values": []
+        },
+        {
+          "i": 17,
+          "icon": "ability_upgrademoonglaive",
+          "name": "Barrage",
+          "ranks": 3,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases the damage done by your Multi-Shot and Volley spells by {0}%.",
+          "values": [
+            [
+              "5",
+              "10",
+              "15"
+            ]
+          ]
+        },
+        {
+          "i": 18,
+          "icon": "ability_hunter_disarmingshot",
+          "name": "Piercing Shots",
+          "ranks": 2,
+          "requires": 14,
+          "reqRanks": 5,
+          "description": "Your critical strikes from Multi-Shot, Steady Shot and Aimed Shot cause the target to bleed, dealing {0}% of the damage over 8 sec.  This damage generates no threat.",
+          "values": [
+            [
+              "15",
+              "30"
+            ]
+          ]
+        },
+        {
+          "i": 19,
+          "icon": "ability_hunter_improvedsteadyshot",
+          "name": "Improved Steady Shot",
+          "ranks": 2,
+          "requires": 11,
+          "reqRanks": 1,
+          "description": "Increases the damage done by your Steady Shot by {0}%.",
+          "values": [
+            [
+              "8",
+              "15"
+            ]
+          ]
+        },
+        {
+          "i": 20,
+          "icon": "inv_misc_quiver_03",
+          "name": "Endless Quiver",
+          "ranks": 2,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Your Auto Shot, Arcane Shot, Steady Shot and Multi-Shot have a {0}% chance to fire an additional normal ranged attack.  This additional shot does not spend ammo.",
+          "values": [
+            [
+              "3",
+              "6"
+            ]
+          ]
+        },
+        {
+          "i": 22,
+          "icon": "inv_weapon_rifle_06",
+          "name": "Ranged Weapon Specialization",
+          "ranks": 5,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases the damage you deal with ranged weapons by {0}%.",
+          "values": [
+            [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          ]
+        },
+        {
+          "i": 25,
+          "icon": "ability_trueshot",
+          "name": "Trueshot Aura",
+          "ranks": 1,
+          "requires": 17,
+          "reqRanks": 3,
+          "description": "Increases the attack power of party members within 45 yards by 3%, plus an additional 30. The aura lasts until canceled.",
+          "values": []
+        }
+      ]
+    },
+    {
+      "name": "Survival",
+      "icon": "ability_hunter_swiftstrike",
+      "maxPoints": 49,
+      "talents": [
+        {
+          "i": 0,
+          "icon": "spell_holy_prayerofhealing",
+          "name": "Improved Slaying",
+          "ranks": 3,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases all damage caused against Beasts, Giants, Dragonkin, and Humanoid targets by {0}% and increases critical damage caused against Beasts, Giants, Dragonkin, and Humanoid targets by an additional {1}%.",
+          "values": [
+            [
+              "1",
+              "2",
+              "3"
+            ],
+            [
+              "1",
+              "2",
+              "3"
+            ]
+          ]
+        },
+        {
+          "i": 1,
+          "icon": "inv_misc_book_08",
+          "name": "Resourcefulness",
+          "ranks": 5,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Reduces the Mana cost of all traps and melee abilities by {0}%.",
+          "values": [
+            [
+              "2",
+              "4",
+              "6",
+              "8",
+              "10"
+            ]
+          ]
+        },
+        {
+          "i": 2,
+          "icon": "ability_parry",
+          "name": "Swift Reflexes",
+          "ranks": 2,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases your Parry chance and attack speed by {0}%.",
+          "values": [
+            [
+              "1",
+              "2"
+            ]
+          ]
+        },
+        {
+          "i": 4,
+          "icon": "spell_nature_stranglevines",
+          "name": "Entrapment",
+          "ranks": 3,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Gives your Immolation Trap, Frost Trap, and Explosive Trap a {0}% chance to entrap the target, preventing them from moving for 5 sec.",
+          "values": [
+            [
+              "8",
+              "16",
+              "25"
+            ]
+          ]
+        },
+        {
+          "i": 5,
+          "icon": "ability_racial_bloodrage",
+          "name": "Savage Strikes",
+          "ranks": 2,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases the damage done by your offhand weapon by {0}% and the critical strike chance of your Lacerate, Raptor Strike, Mongoose Bite, Carve and Wing Clip abilities by {1}%.",
+          "values": [
+            [
+              "13",
+              "25"
+            ],
+            [
+              "3",
+              "6"
+            ]
+          ]
+        },
+        {
+          "i": 6,
+          "icon": "ability_rogue_trip",
+          "name": "Improved Wing Clip",
+          "ranks": 3,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Gives your Wing Clip ability a {0}% chance to immobilize the target for 5 sec.",
+          "values": [
+            [
+              "14",
+              "28",
+              "40"
+            ]
+          ]
+        },
+        {
+          "i": 8,
+          "icon": "inv_misc_map_01",
+          "name": "Planning Ahead",
+          "ranks": 2,
+          "requires": null,
+          "reqRanks": null,
+          "description": "The duration of Freezing and Frost Trap effects and the damage of Immolation and Explosive Trap effects are increased by {0}% if the traps are not triggered within the first 5 sec after being placed.",
+          "values": [
+            [
+              "13",
+              "25"
+            ]
+          ]
+        },
+        {
+          "i": 9,
+          "icon": "trade_survival",
+          "name": "Survivalist",
+          "ranks": 5,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases total health by {0}%.",
+          "values": [
+            [
+              "2",
+              "4",
+              "6",
+              "8",
+              "10"
+            ]
+          ]
+        },
+        {
+          "i": 10,
+          "icon": "inv_throwingknife_06",
+          "name": "Carve",
+          "ranks": 1,
+          "requires": null,
+          "reqRanks": null,
+          "description": "A sweeping attack that strikes up to 5 enemies in a 10 yard cone in front of you, dealing 60% weapon damage.\nThis ability shares a cooldown with Multi-Shot.",
+          "values": []
+        },
+        {
+          "i": 11,
+          "icon": "ability_whirlwind",
+          "name": "Deterrence",
+          "ranks": 1,
+          "requires": null,
+          "reqRanks": null,
+          "description": "When activated, increases your Dodge and Parry chance by 25% for 10 sec.",
+          "values": []
+        },
+        {
+          "i": 12,
+          "icon": "inv_misc_herb_16",
+          "name": "Stinging Nettle",
+          "ranks": 2,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Your Mongoose Bite and triggered Fire traps now apply your highest rank of Serpent Sting for {0}% of the duration. Serpent Stings applied this way ignore resistances and immunities.",
+          "values": [
+            [
+              "20",
+              "40"
+            ]
+          ]
+        },
+        {
+          "i": 13,
+          "icon": "ability_kick",
+          "name": "Surefooted",
+          "ranks": 3,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases hit chance by {0}% and increases the chance movement impairing effects will be resisted by an additional {1}%.",
+          "values": [
+            [
+              "1",
+              "2",
+              "3"
+            ],
+            [
+              "5",
+              "10",
+              "15"
+            ]
+          ]
+        },
+        {
+          "i": 15,
+          "icon": "ability_rogue_feigndeath",
+          "name": "Improved Feign Death",
+          "ranks": 2,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Reduces the chance your Feign Death ability will be resisted by {0}%.",
+          "values": [
+            [
+              "4",
+              "8"
+            ]
+          ]
+        },
+        {
+          "i": 16,
+          "icon": "spell_holy_blessingofstamina",
+          "name": "Killer Instinct",
+          "ranks": 3,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases your critical strike chance with all attacks by {0}%, increases your melee critical strike damage bonus by {1}%.",
+          "values": [
+            [
+              "1",
+              "2",
+              "3"
+            ],
+            [
+              "7",
+              "14",
+              "20"
+            ]
+          ]
+        },
+        {
+          "i": 17,
+          "icon": "ability_ensnare",
+          "name": "Trap Mastery",
+          "ranks": 3,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases the duration of Freezing and Frost Trap effects by {0}% and the damage of Immolation and Explosive Trap effects by {1}%.  In addition, reduces the chance that enemies will resist trap effects by {2}%.",
+          "values": [
+            [
+              "10",
+              "20",
+              "30"
+            ],
+            [
+              "10",
+              "20",
+              "30"
+            ],
+            [
+              "4",
+              "7",
+              "10"
+            ]
+          ]
+        },
+        {
+          "i": 18,
+          "icon": "spell_lacerate_1c",
+          "name": "Lacerate",
+          "ranks": 1,
+          "requires": 10,
+          "reqRanks": 1,
+          "description": "Deepen your target's open wound, dealing damage equal to 35% of your melee Attack Power and bleeding them for 20% of the damage over 8 sec. Can only be used after critically striking your target. Using this ability from the sides of your target increases its damage by 10% and causes the bleed to deal its total damage 100% faster.",
+          "values": []
+        },
+        {
+          "i": 20,
+          "icon": "ability_hunter_swiftstrike",
+          "name": "Vicious Strikes",
+          "ranks": 2,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Reduces the cooldown of your Raptor Strike and Mongoose Bite abilities by {0} sec.",
+          "values": [
+            [
+              "0",
+              "1"
+            ]
+          ]
+        },
+        {
+          "i": 22,
+          "icon": "spell_nature_invisibilty",
+          "name": "Lightning Reflexes",
+          "ranks": 5,
+          "requires": null,
+          "reqRanks": null,
+          "description": "Increases your Agility by {0}% and increases your melee attack power by an amount equal to {1}% of your Agility.",
+          "values": [
+            [
+              "2",
+              "4",
+              "6",
+              "8",
+              "10"
+            ],
+            [
+              "20",
+              "40",
+              "60",
+              "80",
+              "100"
+            ]
+          ]
+        },
+        {
+          "i": 25,
+          "icon": "spell_nature_slow",
+          "name": "Untamed Trapper",
+          "ranks": 1,
+          "requires": 17,
+          "reqRanks": 3,
+          "description": "Reduces the mana cost of your Immolation Trap and Explosive Trap effects by 20% and increases their damage based on your melee Attack Power. In addition, all traps can be placed while in combat.",
+          "values": []
+        }
+      ]
+    }
+  ]
+}
