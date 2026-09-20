@@ -1,0 +1,55 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: github-pages
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Resolve Pages config
+        id: pages
+        env:
+          PUBLIC_SITE_URL: ${{ vars.PUBLIC_SITE_URL }}
+          BASE_PATH: ${{ vars.BASE_PATH }}
+        run: |
+          ORIGIN="${PUBLIC_SITE_URL:-https://winrunner.github.io}"
+          ORIGIN="${ORIGIN%/}"
+          BASE="${BASE_PATH}"
+          if [ "$BASE" = "/" ]; then BASE=""; fi
+          echo "origin=$ORIGIN" >> "$GITHUB_OUTPUT"
+          echo "base=$BASE" >> "$GITHUB_OUTPUT"
+      - run: bun install --frozen-lockfile
+      - run: bun run build
+        env:
+          BASE_PATH: ${{ steps.pages.outputs.base }}
+          PUBLIC_SITE_URL: ${{ steps.pages.outputs.origin }}
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: build
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
