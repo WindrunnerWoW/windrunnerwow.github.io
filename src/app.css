@@ -36,9 +36,10 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:1px solid #d0
 html.news-title-transition .route-curtain,
 html.news-title-transition .route-page{animation:none!important}
 html.news-title-transition::view-transition-group(*){animation-duration:.55s;animation-timing-function:cubic-bezier(.22,1,.36,1)}
-html.news-title-transition::view-transition-group(root){animation:none!important}
-html.news-title-transition::view-transition-old(root),
-html.news-title-transition::view-transition-new(root){animation:none!important;transform:none;opacity:1}
+html.news-title-transition::view-transition-old(root){animation:news-root-hide .55s linear both}
+html.news-title-transition::view-transition-new(root){animation:news-root-show .55s linear both}
+@keyframes news-root-hide{from,to{opacity:0}}
+@keyframes news-root-show{from,to{opacity:1}}
 
 html.changelog-morph-transition .route-curtain,
 html.changelog-morph-transition .route-page{animation:none!important}

@@ -13,8 +13,14 @@
   import { isNewsArticlePath, isNewsFlowPath, isNewsTitleTransition } from '$lib/news/viewTransitionUtils';
   import '../app.css';
 
+  type ViewTransition = {
+    finished: Promise<void>;
+    skipTransition?: () => void;
+  };
+
   type TransitionDocument = Document & {
-    startViewTransition?: (callback: () => void | Promise<void>) => { finished: Promise<void> };
+    startViewTransition?: (callback: () => void | Promise<void>) => ViewTransition;
+    activeViewTransition?: ViewTransition | null;
   };
 
   let fallbackTimer: ReturnType<typeof setTimeout>;
@@ -26,11 +32,15 @@
     stopFitting = bindFittedHeadings();
   };
 
+  $: inSharedFlow = isNewsFlowPath($page.url.pathname) || isChangelogFlowPath($page.url.pathname);
   $: pageTransitionKey = isNewsFlowPath($page.url.pathname)
     ? 'news-flow'
     : isChangelogFlowPath($page.url.pathname)
       ? 'changelog-flow'
       : $page.url.pathname;
+  // Svelte 5 won't replace <slot> when the outer {#key} stays stable, so list and
+  // article would stack. Remount the page itself whenever the path changes.
+  $: pageSlotKey = inSharedFlow ? $page.url.pathname : 'page';
 
   const changelogPartNames: Record<string, string> = {
     meta: 'changelog-meta',
@@ -112,19 +122,34 @@
         if (changelogDirection && changelogSlug) setChangelogMorphNames(changelogSlug);
 
         return new Promise<void>((resolve) => {
-          const viewTransition = startViewTransition(async () => {
+          let settled = false;
+          const proceed = () => {
+            if (settled) return;
+            settled = true;
             resolve();
-            await navigation.complete;
-            if (changelogDirection && changelogSlug) setChangelogMorphNames(changelogSlug);
-          });
+          };
+          const failSafe = setTimeout(proceed, 1000);
 
-          viewTransition.finished
-            .catch(() => undefined)
-            .finally(() => {
-              clearChangelogMorphNames();
-              setChangelogTransitionClass(null);
-              document.documentElement.classList.remove('news-title-transition');
+          const cleanup = () => {
+            clearTimeout(failSafe);
+            clearChangelogMorphNames();
+            setChangelogTransitionClass(null);
+            document.documentElement.classList.remove('news-title-transition');
+          };
+
+          try {
+            transitionDocument.activeViewTransition?.skipTransition?.();
+            const viewTransition = startViewTransition(async () => {
+              proceed();
+              await navigation.complete;
+              if (changelogDirection && changelogSlug) setChangelogMorphNames(changelogSlug);
             });
+
+            viewTransition.finished.catch(() => undefined).finally(cleanup);
+          } catch {
+            cleanup();
+            proceed();
+          }
         });
       });
     } else if (!reducedMotion) {
@@ -188,6 +213,8 @@ afterNavigate(refitHeadings);
     class="route-page"
     class:skip-slide={skipPageSlide || isNewsArticlePath($page.url.pathname) || isChangelogEntryPath($page.url.pathname)}
   >
-    <slot />
+    {#key pageSlotKey}
+      <slot />
+    {/key}
   </div>
 {/key}
