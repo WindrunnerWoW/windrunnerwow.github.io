@@ -46,6 +46,11 @@
     return document.querySelector('.post-footer');
   }
 
+  function siteFooter() {
+    const next = document.querySelector('main')?.nextElementSibling;
+    return next instanceof HTMLElement && next.tagName === 'FOOTER' ? next : null;
+  }
+
   function measure() {
     const firstId = headings[0]?.id;
     const end = articleEnd();
@@ -76,13 +81,10 @@
       tocLift = (distanceToDock / startDistance) * railHeight * 0.28;
     }
 
-    tocClip = 0;
-    if (end && thumbTop >= 1) {
-      tocClip = Math.max(
-        0,
-        window.innerHeight * focusRatio - end.getBoundingClientRect().top
-      );
-    }
+    const chrome = siteFooter();
+    tocClip = chrome
+      ? Math.max(0, window.innerHeight - gap - chrome.getBoundingClientRect().top)
+      : 0;
 
     const maxShift = Math.max(0, railHeight - 48);
     tocLift = Math.min(Math.max(0, tocLift), maxShift);
