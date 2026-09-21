@@ -60,9 +60,12 @@
     background-repeat: no-repeat;
   }
   .content {
+    min-width: 0;
+    width: 100%;
     max-width: 900px;
   }
   .content h1 {
+    max-width: 100%;
     font-size: clamp(54px, 9vw, 112px);
     line-height: 0.84;
     text-transform: uppercase;
