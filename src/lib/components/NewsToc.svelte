@@ -18,7 +18,13 @@
   let trackEl: HTMLElement;
   let ticking = false;
 
-  const focusRatio = 0.62;
+  const defaultFocusRatio = 0.62;
+  const ultrawideFocusRatio = 0.70;
+
+  function getFocusRatio() {
+    const aspectRatio = window.innerWidth / Math.max(1, window.innerHeight);
+    return aspectRatio >= 2.1 ? ultrawideFocusRatio : defaultFocusRatio;
+  }
 
   function prefersReducedMotion() {
     return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -39,16 +45,11 @@
   }
 
   function focusY() {
-    return window.scrollY + window.innerHeight * focusRatio;
+    return window.scrollY + window.innerHeight * getFocusRatio();
   }
 
   function articleEnd() {
     return document.querySelector('.post-footer');
-  }
-
-  function siteFooter() {
-    const next = document.querySelector('main')?.nextElementSibling;
-    return next instanceof HTMLElement && next.tagName === 'FOOTER' ? next : null;
   }
 
   function measure() {
@@ -75,20 +76,24 @@
     tocLift = 0;
     const firstEl = firstId ? document.getElementById(firstId) : null;
     if (firstEl) {
-      const dock = window.innerHeight * focusRatio;
-      const distanceToDock = Math.max(0, firstEl.getBoundingClientRect().top - dock);
-      const startDistance = Math.max(1, rangeStart - dock);
-      tocLift = (distanceToDock / startDistance) * railHeight * 0.28;
+      // Park below the header, not the reading-focus line — on a tall ultrawide
+      // the first heading is already at that line, which collapsed the inset.
+      const restTop = headerTop;
+      const distanceToRest = Math.max(0, firstEl.getBoundingClientRect().top - restTop);
+      const startDistance = Math.max(1, rangeStart - restTop);
+      tocLift = (distanceToRest / startDistance) * railHeight * 0.28;
     }
 
-    const chrome = siteFooter();
-    tocClip = chrome
-      ? Math.max(0, window.innerHeight - gap - chrome.getBoundingClientRect().top)
-      : 0;
+    // Keep the complete rail (and its markers) together as the article leaves
+    // the viewport. Its line ends at the article's bottom edge minus the same
+    // gap used by the fixed rail. The thumb reaches the end at .post-footer.
+    const articleBottom = document.getElementById('news-article')?.getBoundingClientRect().bottom;
+    tocClip = articleBottom === undefined
+      ? 0
+      : Math.max(0, window.innerHeight - articleBottom - 18);
 
     const maxShift = Math.max(0, railHeight - 48);
     tocLift = Math.min(Math.max(0, tocLift), maxShift);
-    tocClip = Math.min(tocClip, maxShift - tocLift);
   }
 
   function syncActive() {
@@ -109,7 +114,7 @@
 
   function scrollToFocusDocumentY(documentY: number) {
     window.scrollTo({
-      top: Math.min(maxScroll(), Math.max(0, documentY - window.innerHeight * focusRatio)),
+      top: Math.min(maxScroll(), Math.max(0, documentY - window.innerHeight * getFocusRatio())),
       behavior: 'auto'
     });
   }
@@ -130,7 +135,7 @@
     window.scrollTo({
       top: Math.min(
         maxScroll(),
-        Math.max(0, headingY(id) - window.innerHeight * focusRatio + 1)
+        Math.max(0, headingY(id) - window.innerHeight * getFocusRatio() + 1)
       ),
       behavior: prefersReducedMotion() ? 'auto' : 'smooth'
     });
@@ -278,17 +283,17 @@
     position: fixed;
     z-index: 20;
     top: calc(96px + var(--toc-lift, 0px));
-    bottom: calc(24px + var(--toc-clip, 0px));
+    bottom: 24px;
     left: max(16px, calc(25vw - 236px));
     width: min(220px, calc(25vw - 40px));
     overflow: hidden;
     pointer-events: none;
+    transform: translateY(calc(-1 * var(--toc-clip, 0px)));
   }
 
   .track {
     position: relative;
-    height: calc(100% + var(--toc-lift, 0px) + var(--toc-clip, 0px));
-    transform: translateY(calc(var(--toc-clip, 0px) * -1));
+    height: calc(100% + var(--toc-lift, 0px));
     pointer-events: auto;
     cursor: ns-resize;
     touch-action: none;
@@ -395,7 +400,7 @@
       left: 10px;
       width: 168px;
       top: calc(72px + var(--toc-lift, 0px));
-      bottom: calc(16px + var(--toc-clip, 0px));
+      bottom: 16px;
     }
 
     .label {
