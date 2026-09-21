@@ -1,7 +1,9 @@
 <script lang="ts">
   import { afterNavigate, beforeNavigate, onNavigate } from '$app/navigation';
+  import { onMount } from 'svelte';
   import { page } from '$app/stores';
   import { browser } from '$app/environment';
+  import { bindFittedHeadings } from '$lib/fitTitle';
   import {
     getChangelogTransitionDirection,
     getChangelogTransitionSlug,
@@ -17,6 +19,12 @@
 
   let fallbackTimer: ReturnType<typeof setTimeout>;
   let skipPageSlide = false;
+  let stopFitting = () => {};
+
+  const refitHeadings = () => {
+    stopFitting();
+    stopFitting = bindFittedHeadings();
+  };
 
   $: pageTransitionKey = isNewsFlowPath($page.url.pathname)
     ? 'news-flow'
@@ -158,8 +166,15 @@
         clearTimeout(fallbackTimer);
         fallbackTimer = setTimeout(() => setCurtainState('idle'), 520);
       });
-    }
   }
+}
+
+onMount(() => {
+  refitHeadings();
+  return () => stopFitting();
+});
+
+afterNavigate(refitHeadings);
 </script>
 
 <svelte:head>

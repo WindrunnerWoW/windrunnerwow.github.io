@@ -59,12 +59,17 @@
 <Header />
 <main>
   <section class="intro">
-    <div class="kicker">A JOURNEY WITH A TWIST</div>
-    <h1 class="display-font">Leveling Challenges</h1>
-    <p>
-      Prove yourself a great adventurer by completing one or multiple challenges. Get unique rewards such as titles,
-      tabards, companions, mounts and more.
-    </p>
+    <div class="intro-art" aria-hidden="true"></div>
+    <div class="intro-overlay" aria-hidden="true"></div>
+    <div class="intro-copy">
+      <div class="kicker">A JOURNEY WITH A TWIST</div>
+      <h1>Leveling Challenges</h1>
+      <p>
+        Prove yourself a great adventurer by completing one or multiple challenges. Get unique rewards such as titles,
+        tabards, companions, mounts and more.
+      </p>
+    </div>
+    <div class="scroll-mark" aria-hidden="true">◆<span>SCROLL TO EXPLORE</span></div>
   </section>
 
   <section class="list">
@@ -171,25 +176,60 @@
 
 <style>
   .intro {
-    padding: 150px clamp(24px, 8vw, 130px) 40px;
-    text-align: center;
+    position: relative;
+    min-height: 760px;
+    display: flex;
+    align-items: end;
+    padding: 150px clamp(24px, 8vw, 130px) 110px;
+    overflow: hidden;
+    background: #090b0c;
+  }
+  .intro-art {
+    position: absolute;
+    inset: 0;
+    background: url('/art/features/challenges.webp') 70% 42% / cover no-repeat;
+    filter: saturate(0.82) brightness(0.72);
+  }
+  .intro-overlay {
+    position: absolute;
+    inset: 0;
     background:
-      radial-gradient(circle at 50% 0%, rgba(92, 73, 42, 0.16), transparent 28rem),
-      #090b0c;
+      linear-gradient(90deg, rgba(5, 7, 8, 0.94), rgba(5, 7, 8, 0.52) 46%, rgba(5, 7, 8, 0.18)),
+      linear-gradient(180deg, rgba(5, 7, 8, 0.08) 40%, #090b0c 98%);
+  }
+  .intro-copy {
+    position: relative;
+    z-index: 1;
+    max-width: 820px;
   }
   .intro h1 {
-    font-size: clamp(52px, 7vw, 92px);
-    line-height: 0.92;
-    color: #c9a45a;
-    margin: 14px 0 22px;
-    text-transform: none;
-    font-weight: 400;
+    font-size: clamp(52px, 8vw, 108px);
+    line-height: 0.86;
+    color: #ded3bb;
+    text-transform: uppercase;
+    margin: 10px 0 24px;
   }
   .intro p {
-    max-width: 720px;
-    margin: 0 auto;
-    color: #b1a898;
+    max-width: 680px;
+    margin: 0;
+    color: #b2aa9e;
     font: 18px / 1.85 var(--font-body);
+  }
+  .scroll-mark {
+    position: absolute;
+    z-index: 2;
+    right: clamp(24px, 7vw, 110px);
+    bottom: 45px;
+    color: #a78348;
+    font-size: 10px;
+  }
+  .scroll-mark span {
+    display: block;
+    margin-top: 12px;
+    color: #847b6d;
+    font: 9px var(--font-ui);
+    letter-spacing: 0.18em;
+    writing-mode: vertical-rl;
   }
   .list {
     display: grid;
@@ -402,6 +442,13 @@
     }
   }
   @media (max-width: 600px) {
+    .intro {
+      min-height: 620px;
+      padding-bottom: 80px;
+    }
+    .scroll-mark {
+      display: none;
+    }
     .intro,
     .list,
     .callout {

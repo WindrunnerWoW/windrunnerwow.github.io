@@ -84,9 +84,8 @@
       tocLift = (distanceToRest / startDistance) * railHeight * 0.28;
     }
 
-    // Keep the complete rail (and its markers) together as the article leaves
-    // the viewport. Its line ends at the article's bottom edge minus the same
-    // gap used by the fixed rail. The thumb reaches the end at .post-footer.
+    // Shorten the rail with the article so it never hangs into the site footer.
+    // Markers stay mapped onto this visible track, so the full timeline remains.
     const articleBottom = document.getElementById('news-article')?.getBoundingClientRect().bottom;
     tocClip = articleBottom === undefined
       ? 0
@@ -94,6 +93,7 @@
 
     const maxShift = Math.max(0, railHeight - 48);
     tocLift = Math.min(Math.max(0, tocLift), maxShift);
+    tocClip = Math.min(Math.max(0, tocClip), Math.max(0, maxShift - tocLift));
   }
 
   function syncActive() {
@@ -283,17 +283,16 @@
     position: fixed;
     z-index: 20;
     top: calc(96px + var(--toc-lift, 0px));
-    bottom: 24px;
+    bottom: calc(24px + var(--toc-clip, 0px));
     left: max(16px, calc(25vw - 236px));
     width: min(220px, calc(25vw - 40px));
     overflow: hidden;
     pointer-events: none;
-    transform: translateY(calc(-1 * var(--toc-clip, 0px)));
   }
 
   .track {
     position: relative;
-    height: calc(100% + var(--toc-lift, 0px));
+    height: 100%;
     pointer-events: auto;
     cursor: ns-resize;
     touch-action: none;
@@ -400,7 +399,7 @@
       left: 10px;
       width: 168px;
       top: calc(72px + var(--toc-lift, 0px));
-      bottom: 16px;
+      bottom: calc(16px + var(--toc-clip, 0px));
     }
 
     .label {

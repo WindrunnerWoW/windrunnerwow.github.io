@@ -83,7 +83,8 @@ url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' he
 .body-font{font-family:var(--font-body)!important}
 .ui-font{font-family:var(--font-ui)!important}
 
-.page-intro{max-width:860px}
+h1{min-width:0;max-width:100%;--title-min:20px}
+.page-intro{max-width:860px;min-width:0;width:100%}
 .page-intro h1{font-size:clamp(52px,8vw,116px);line-height:.86;text-transform:uppercase;color:#e2d5b8;margin:16px 0 24px}
 .page-intro p{max-width:760px;font-family:var(--font-body);font-size:18px;line-height:1.85;color:#aaa091}
 .story-page main,.detail-page main{background:#090b0c}
@@ -96,6 +97,13 @@ main>.hero{
   background-position:var(--hero-position, center);
   background-size:var(--hero-size, cover);
   background-repeat:no-repeat;
+}
+/* Flex heroes size to the longest word unless the copy can shrink. */
+.hero .content,
+.story-hero-copy,
+.race-hero-copy{
+  min-width:0;
+  width:100%;
 }
 main>.hero .content{position:relative;z-index:1;max-width:900px}
 main>.hero h1{font-size:clamp(52px,8vw,112px);line-height:.86;text-transform:uppercase;color:#ded3bb;margin:16px 0 24px}
