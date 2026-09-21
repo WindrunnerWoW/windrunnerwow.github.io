@@ -73,3 +73,14 @@ export function fitOverflowText(node: HTMLElement) {
     }
   };
 }
+
+/** Fit every page heading to its container. Call again after client-side navigations. */
+export function bindFittedHeadings(root: ParentNode = document) {
+  const cleanups: Array<() => void> = [];
+  root.querySelectorAll<HTMLElement>('.route-page h1').forEach((node) => {
+    cleanups.push(fitOverflowText(node).destroy);
+  });
+  return () => {
+    cleanups.forEach((fn) => fn());
+  };
+}
