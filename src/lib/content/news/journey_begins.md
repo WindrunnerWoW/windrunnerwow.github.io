@@ -1,13 +1,10 @@
 ---
 title: "The singleplayer journey begins"
-date: "2026-09-19"
+date: "2026-09-22"
 description: "Windrunner now has a public home. This site is where we will post development updates, patch notes, feature documentation etc. etc."
 category: "Welcome"
 image: "/art/news/start_journey.webp"
 ---
-
-# The singleplayer journey begins
-
 ## Why
 
 *"Ay Loser, WoW Forever just entered Beta, we have 2 Servers from the old devs, they DDoS the living shit out of the 3rd. What is this about, what are you doing? Also, who the fuck wants a singleplayer game anyway? And aren't there already like 5 of these? Fuckin' Vibe Coders these days..."*
