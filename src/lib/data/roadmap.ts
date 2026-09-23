@@ -111,6 +111,7 @@ export const roadmap: RoadmapEntry[] = [
     ],
     items: [
       'Earn "Marks of the Ranger General" by buying them or completing challenges.',
+      'Add weekly quest system to earn Marks of the Ranger General',
     ]
   },
   {
@@ -137,7 +138,9 @@ export const roadmap: RoadmapEntry[] = [
       'The Windrunner Launcher will allow you to launch the game without having to know anything. I will set up the server, game, take care of the updates and more.',
     images: [
       { src: '/art/roadmap/launcher.webp', alt: 'Windrunner Launcher' }
-    ],
+    ],items: [
+      'Game and server setup, launch, updates, news, all in one place.',
+    ]
   },
   {
     status: 'planned',
@@ -158,7 +161,7 @@ export const roadmap: RoadmapEntry[] = [
     status: 'planned',
     marker: 'Planned',
     title: 'Raid Reworks',
-    when: '1.18.4',
+    when: '1.18.3',
     summary:
       '40 Player raids? 39 bots and you? Hell nah! Let\'s make them more manageable.',
     images: [
