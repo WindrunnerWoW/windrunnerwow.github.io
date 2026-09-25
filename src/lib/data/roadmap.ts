@@ -174,6 +174,17 @@ export const roadmap: RoadmapEntry[] = [
   {
     status: 'horizon',
     marker: 'Horizon',
+    title: 'Linux Support',
+    when: 'soon',
+    summary:
+      'Launcher and auto setup for Linux.',
+    images: [
+      { src: '/art/roadmap/linux.webp', alt: 'Zone Improvements' }
+    ]
+  },
+  {
+    status: 'horizon',
+    marker: 'Horizon',
     title: 'Zone Improvements',
     when: 'TBD',
     summary:
@@ -182,7 +193,6 @@ export const roadmap: RoadmapEntry[] = [
       { src: '/art/roadmap/Telabim.webp', alt: 'Zone Improvements' }
     ]
   },
-
   {
     status: 'horizon',
     marker: 'Horizon',
