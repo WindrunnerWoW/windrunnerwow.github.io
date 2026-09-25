@@ -1,0 +1,175 @@
+{
+    "schema": 1,
+    "channel": "stable",
+    "version": "2026.02.0",
+    "product": "turtle-wow-client",
+    "changelog": "What changed for players in this release.",
+    "bootstrap": {
+      "displayName": "Vanilla 1.12 client",
+      "url": "https://drive.google.com/file/d/1Vv5P7v_uOWmCPktPpKjkNpt7URTEdzlU/view?usp=drive_link",
+      "sha256": "1DFD9F74A47E6A806666E9FA2CF761B3B57329C4A053C0B2942AB7AAEF64996C"
+    },
+    "maps": {
+      "displayName": "Map data (dbc/maps/vmaps/mmaps)",
+      "url": "https://drive.google.com/file/d/16oML2RvKpqwOkdwIHqNkrd99hDefleH9/view?usp=drive_link",
+      "sha256": "8FDC81098EE6E638CBB1F0288505FDCFF2604BEE6D9FE2FAB01A7611ED46FF47"
+    },
+    "assets": [
+      {
+        "id": "vanillafixes",
+        "displayName": "VanillaFixes",
+        "version": "2.2.0",
+        "kind": "ZipRoot",
+        "recommended": true,
+        "category": "Compatibility",
+        "description": "Replaces the client's spin-wait timing loop, removes the mouse input lag and adds the DLL loader used by SuperWoW and nampower. Launching through VanillaFixes.exe is what makes dlls.txt work.",
+        "gitHubRepo": "hannesmann/vanillafixes",
+        "assetContains": "vanillafixes*.zip",
+        "conflicts": ["dxvk"]
+      },
+      {
+        "id": "multimonitor",
+        "displayName": "VanillaMultiMonitorFix",
+        "version": "0.2",
+        "kind": "ZipRoot",
+        "recommended": true,
+        "category": "Compatibility",
+        "description": "Makes the 1.12 client list the resolutions of one monitor, which is what fixes missing widescreen modes on multi-monitor setups. The preferred monitor index lives in VMMFix_preferred_monitor.txt. Loaded by VanillaFixes.",
+        "gitHubRepo": "Mates1500/VanillaMultiMonitorFix",
+        "assetContains": "release.zip",
+        "dependencies": ["vanillafixes"],
+        "dllsTxtAdd": ["VanillaMultiMonitorFix.dll"]
+      },
+      {
+        "id": "superwow",
+        "displayName": "SuperWoW",
+        "version": "1.5",
+        "kind": "Dll",
+        "destination": "SuperWoWhook.dll",
+        "recommended": true,
+        "category": "Client extension",
+        "description": "Extends the 1.12 client with GUID-aware Lua APIs, camera and nameplate hooks and the events many modern vanilla addons expect. Injected by VanillaFixes through dlls.txt.",
+        "gitHubRepo": "balakethelock/SuperWoW",
+        "assetContains": "SuperWoW*.zip",
+        "dependencies": ["vanillafixes"],
+        "dllsTxtAdd": ["SuperWoWhook.dll"]
+      },
+      {
+        "id": "nampower",
+        "displayName": "nampower",
+        "version": "2.4.0",
+        "kind": "Dll",
+        "destination": "nampower.dll",
+        "category": "Client extension",
+        "description": "Queues the next spell cast slightly before the current one finishes, which removes most of the dead time high-latency players lose between casts.",
+        "gitHubRepo": "namreeb/nampower",
+        "assetContains": "nampower*.zip",
+        "dependencies": ["vanillafixes"],
+        "dllsTxtAdd": ["nampower.dll"]
+      },
+      {
+        "id": "unitxp",
+        "displayName": "UnitXP SP3",
+        "version": "3.6.0",
+        "kind": "Dll",
+        "destination": "UnitXP_SP3.dll",
+        "category": "Client extension",
+        "description": "Adds line-of-sight, real distance and other unit queries to the Lua API, plus optional interface fixes used by several community addons.",
+        "gitHubRepo": "codeberg.org/konaka/UnitXP_SP3",
+        "assetContains": "UnitXP_SP3*.zip",
+        "dependencies": ["vanillafixes"],
+        "dllsTxtAdd": ["UnitXP_SP3.dll"]
+      },
+      {
+        "id": "vanilla_helpers",
+        "displayName": "Vanilla Helpers (shared HD assets)",
+        "version": "1.4.0",
+        "kind": "Mpq",
+        "destination": "Data/patch-V.mpq",
+        "category": "Graphics",
+        "description": "Shared models, textures and DBC corrections the high-definition patches build on. Enabling an HD patch pulls this in automatically."
+      },
+      {
+        "id": "vanilla_tweaks",
+        "displayName": "VanillaTweaks",
+        "version": "1.6.0",
+        "kind": "ExecutablePatch",
+        "destination": "WoW.exe",
+        "recommended": true,
+        "category": "Executable",
+        "description": "Patches the game executable for a wider field of view, a longer camera distance, a higher far clip, large-address awareness and other quality-of-life fixes. The patched binary is always regenerated from the preserved clean WoW.exe.",
+        "gitHubRepo": "brndd/vanilla-tweaks",
+        "assetContains": "vanilla-tweaks*.zip"
+      },
+      {
+        "id": "hd_patch_a",
+        "displayName": "HD Character Models",
+        "version": "3.1.0",
+        "kind": "Mpq",
+        "destination": "Data/patch-A.mpq",
+        "category": "Graphics",
+        "description": "High-definition player and creature models. Large download; needs the shared HD assets patch.",
+        "dependencies": ["vanilla_helpers"]
+      },
+      {
+        "id": "hd_patch_b",
+        "displayName": "HD World Textures",
+        "version": "3.1.0",
+        "kind": "Mpq",
+        "destination": "Data/patch-B.mpq",
+        "category": "Graphics",
+        "description": "Higher resolution terrain, building and doodad textures for the classic zones.",
+        "dependencies": ["vanilla_helpers"]
+      },
+      {
+        "id": "raid_visuals",
+        "displayName": "Improved Raid Visuals",
+        "version": "1.2.0",
+        "kind": "Mpq",
+        "destination": "Data/patch-O.mpq",
+        "category": "Graphics",
+        "description": "Clearer boss telegraphs and ground effects so raid mechanics stay readable on busy screens."
+      },
+      {
+        "id": "pretty_night_sky",
+        "displayName": "Pretty Night Sky",
+        "version": "1.0.3",
+        "kind": "Mpq",
+        "destination": "Data/patch-Z.mpq",
+        "category": "Graphics",
+        "description": "Replaces the night skyboxes with a detailed starfield. Purely cosmetic."
+      },
+      {
+        "id": "pfquest_turtle",
+        "displayName": "pfQuest (custom database)",
+        "version": "6.1.0",
+        "kind": "AddOn",
+        "destination": "Interface/AddOns/pfQuest-turtle",
+        "category": "Interface",
+        "description": "Custom quest, item and creature database for pfQuest, including extra zones and quest chains.",
+        "gitHubRepo": "shagu/pfQuest-turtle"
+      },
+      {
+        "id": "script_memory",
+        "displayName": "Raise Lua script memory",
+        "version": "1.0.0",
+        "kind": "Configuration",
+        "destination": "WTF/Config.wtf",
+        "recommended": true,
+        "category": "Configuration",
+        "description": "Raises the Lua memory ceiling and the addon script limits so large addon collections stop throwing out-of-memory errors.",
+        "assetContains": "scriptMemory=16384;maxAddOnMemory=131072"
+      },
+      {
+        "id": "dxvk",
+        "displayName": "DXVK (Direct3D 9 over Vulkan)",
+        "version": "1.10.3",
+        "kind": "Dxvk",
+        "destination": "d3d9.dll",
+        "category": "Graphics",
+        "description": "Translates the client's Direct3D 9 calls to Vulkan. Conflicts with VanillaFixes on most drivers, so only one of the two can be active. Not installable from the launcher yet.",
+        "gitHubRepo": "doitsujin/dxvk",
+        "conflicts": ["vanillafixes"]
+      }
+    ]
+  }
