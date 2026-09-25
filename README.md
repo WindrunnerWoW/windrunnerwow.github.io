@@ -45,6 +45,12 @@ Day-to-day content lives in a few files:
 
 Step-by-step notes for news, changelog, and roadmap entries are in [`howTo.md`](howTo.md).
 
+## Client manifest
+
+Add the 32-byte Ed25519 private seed that matches the launcher's embedded `client-prod-1` public key as the base64-encoded repository Actions secret `CLIENT_MANIFEST_PRIVATE_KEY` in Settings → Secrets and variables → Actions. Keep the private key out of the repository. If you generate a new pair with `sign-manifest keygen`, update the launcher's public key before publishing manifests signed with it.
+
+Add or edit `client.json` in the repository root and push it to `main`. CI signs its exact UTF-8 bytes, commits `client.manifest.json`, and publishes the same manifest at `/client.manifest.json` through the site's `static/` directory. The signing workflow can also be run manually from Actions.
+
 ## Stack
 
 SvelteKit with the static adapter, Svelte 5, Vite, and Markdown news via `marked`.
