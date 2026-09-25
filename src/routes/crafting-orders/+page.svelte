@@ -63,6 +63,7 @@
         spending a primary slot on Enchanting yourself. 
       </p>
       <a class="cta" href="/features/professions">Back to professions →</a>
+      <a class="cta" href="/news/FS_craftingOrders">More about Crafting Orders →</a>
     </div>
   </section>
 </main>
@@ -146,7 +147,7 @@
   }
   .cta {
     display: inline-block;
-    margin-top: 16px;
+    margin: 16px 12px 0 0;
     padding: 14px 18px;
     border: 1px solid #80663a;
     color: #c7b382;
