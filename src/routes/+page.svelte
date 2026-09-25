@@ -195,12 +195,12 @@
       </div>
       <a
         class="download"
-        href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygUjcmljayBhc3RsZXkgbmV2ZXIgZ29ubmEgZ2l2ZSB5b3UgdXA%3D"
+        href="https://github.com/WindrunnerWoW/windrunner-wow/releases/latest"
         target="_blank"
         rel="noopener noreferrer"
       >
         <span class="download-icon" aria-hidden="true"></span>
-        Download ... soon
+        Download
       </a>
     </div>
     <div class="hero-ornament"></div>
