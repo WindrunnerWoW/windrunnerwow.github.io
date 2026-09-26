@@ -76,17 +76,15 @@
     tocLift = 0;
     const firstEl = firstId ? document.getElementById(firstId) : null;
     if (firstEl) {
-      // Park below the header, not the reading-focus line — on a tall ultrawide
-      // the first heading is already at that line, which collapsed the inset.
       const restTop = headerTop;
       const distanceToRest = Math.max(0, firstEl.getBoundingClientRect().top - restTop);
       const startDistance = Math.max(1, rangeStart - restTop);
       tocLift = (distanceToRest / startDistance) * railHeight * 0.28;
     }
 
-    // Shorten the rail with the article so it never hangs into the site footer.
-    // Markers stay mapped onto this visible track, so the full timeline remains.
-    const articleBottom = document.getElementById('news-article')?.getBoundingClientRect().bottom;
+    const articleBottom =
+      articleEnd()?.getBoundingClientRect().bottom ??
+      document.getElementById('news-article')?.getBoundingClientRect().bottom;
     tocClip = articleBottom === undefined
       ? 0
       : Math.max(0, window.innerHeight - articleBottom - 18);

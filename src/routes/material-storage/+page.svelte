@@ -59,6 +59,8 @@
       <p>
         Deposit stacks one at a time, or use Deposit All Materials to send every eligible reagent in at once.
       </p>
+      <a class="cta" href="/features/professions">Back to professions →</a>
+      <a class="cta" href="/news/FS_materialStorage">More about the Material Storage →</a>
     </div>
   </section>
 </main>

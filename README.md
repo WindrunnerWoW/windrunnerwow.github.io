@@ -30,6 +30,7 @@ Optional environment variables:
 | --- | --- |
 | `BASE_PATH` | Subpath if the site is not served from `/` |
 | `PUBLIC_SITE_URL` | Canonical origin used while prerendering |
+| `PUBLIC_GITHUB_TOKEN` | Optional fine-grained PAT (public repo read). Without it, GitHub may show news-discussion authors as anonymous for org members |
 
 ## Editing content
 
