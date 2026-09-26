@@ -33,6 +33,7 @@ export const load: PageLoad = ({ params }) => {
       category: post.category,
       description: post.description,
       image: post.image,
+      discussion: post.discussion,
       html,
       headings
     }
