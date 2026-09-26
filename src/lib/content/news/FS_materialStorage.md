@@ -21,7 +21,7 @@ First you need to buy it. To do that you visit a banker and you pay 250g. Then t
 
 Sure, sure. 
 
-As i already talked about in the [Spotlight for Crafting Orders](/news/FS_craftingStorage), people are playing to have fun. Of course, hauling 1000kg (2204.62lbs for the yankees) of linen, because you need to get yourself some new crafting gear, is no fun. And it taking away all your bank space is also no fun. So instead, you can bank it in your special material storage.
+As i already talked about in the [Spotlight for Crafting Orders](/news/FS_materialStorage), people are playing to have fun. Of course, hauling 1000kg (2204.62lbs for the yankees) of linen, because you need to get yourself some new crafting gear, is no fun. And it taking away all your bank space is also no fun. So instead, you can bank it in your special material storage.
 
 <br>
 
