@@ -87,11 +87,13 @@ category: "Development"
 author: "Windrunner"
 tags: "devlog, karazhan"
 image: "/art/news/karazhan-cover.webp"
+discussion: ""
 ---
 ```
 
-Use the `YYYY-MM-DD` format for the date. `author` and `tags` are optional, but
-`title`, `date`, `description`, and `category` should always be filled in.
+Use the `YYYY-MM-DD` format for the date. `author`, `tags`, and `discussion` are
+optional, but `title`, `date`, `description`, and `category` should always be
+filled in.
 
 ## 3. Add a cover image
 
@@ -113,7 +115,32 @@ That one field is used as:
 Leave `image` out if the post has no cover. Cards then stay text-only; they do
 not show an empty placeholder box.
 
-## 4. Write the article and add inline images
+## 4. Link a GitHub discussion (optional)
+
+To show a live comment thread under the article, create a GitHub Discussion on
+the pages repo
+([WindrunnerWoW/windrunnerwow.github.io](https://github.com/WindrunnerWoW/windrunnerwow.github.io/discussions))
+and set `discussion` to that discussion's exact title:
+
+```md
+discussion: "Crafting Storage"
+```
+
+You can also use the discussion number instead:
+
+```md
+discussion: "12"
+```
+
+Leave `discussion` empty or omit it to hide the section. The article page loads
+comments from GitHub in the browser and links to the discussion for replies.
+
+Without an API token, GitHub may hide org-member names (they appear anonymous on
+the site). To show real usernames and avatars, set `PUBLIC_GITHUB_TOKEN` to a
+fine-grained personal access token with read access to public repositories, both
+locally and as a GitHub Actions secret/variable for the Pages build.
+
+## 5. Write the article and add inline images
 
 Write the article below the frontmatter using Markdown headings, lists, links,
 bold text, and images. Inline images in the body are separate from the cover.
@@ -130,13 +157,14 @@ Write the section text here.
 The title heading inside the article is optional because the page already shows
 the title from the frontmatter.
 
-## 5. Check the article
+## 6. Check the article
 
 Save the file and open [the local news page](http://localhost:5174/news). The
 new article is discovered automatically and sorted by date, so no other file
 needs to be updated. Check:
 
 - the article header, title, summary, formatting, links, and inline images
+- the discussion section under the article, if `discussion` is set
 - the homepage Latest updates card
 - the `/news` list thumbnail
 - `/rss.xml` for the cover URL if the launcher needs it

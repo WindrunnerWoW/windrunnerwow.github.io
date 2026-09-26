@@ -3,6 +3,7 @@
   import Footer from '$lib/components/Footer.svelte';
   import NewsTitle from '$lib/components/NewsTitle.svelte';
   import NewsToc from '$lib/components/NewsToc.svelte';
+  import NewsDiscussion from '$lib/components/NewsDiscussion.svelte';
   import { formatNewsDate } from '$lib/news/posts';
 
   export let data;
@@ -48,6 +49,11 @@
       <a class="back" href="/news">← Back to news</a>
     </footer>
   </article>
+  {#if data.post.discussion}
+    <aside class="post discussion-slot">
+      <NewsDiscussion discussion={data.post.discussion} />
+    </aside>
+  {/if}
 </main>
 <Footer />
 
@@ -242,6 +248,16 @@
     margin-top: 3rem;
     padding-top: 2rem;
     border-top: 1px solid #29251d;
+  }
+
+  .discussion-slot {
+    padding-top: 0;
+    padding-bottom: 110px;
+  }
+
+  /* Article already ends with footer padding; discussion slot continues the column. */
+  .post:has(+ .discussion-slot) {
+    padding-bottom: 0;
   }
 
   :global(html.news-title-transition) .hero-art,
