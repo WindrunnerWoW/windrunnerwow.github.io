@@ -6,6 +6,7 @@ category: "Development"
 author: "Windrunner"
 tags: "devlog, world"
 image: "/art/news/your-cover.webp"
+discussion: ""
 ---
 
 # Your news title

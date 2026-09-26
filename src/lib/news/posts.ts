@@ -9,6 +9,7 @@ export type NewsPost = {
   author?: string;
   tags?: string;
   image?: string;
+  discussion?: string;
   content: string;
 };
 
@@ -66,6 +67,11 @@ function normalizeImagePath(value: string | undefined): string | undefined {
   return path.startsWith('/') ? path : `/${path}`;
 }
 
+function normalizeDiscussion(value: string | undefined): string | undefined {
+  const discussion = value?.trim();
+  return discussion || undefined;
+}
+
 export function absoluteUrl(origin: string, path: string): string {
   if (/^https?:\/\//i.test(path)) return path;
   return `${origin.replace(/\/$/, '')}${path.startsWith('/') ? path : `/${path}`}`;
@@ -98,6 +104,7 @@ export function getAllNewsPosts(): NewsPost[] {
         author: frontmatter.author,
         tags: frontmatter.tags,
         image: normalizeImagePath(frontmatter.image),
+        discussion: normalizeDiscussion(frontmatter.discussion),
         content
       } satisfies NewsPost;
     })

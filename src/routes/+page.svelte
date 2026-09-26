@@ -5,6 +5,8 @@
   import { fitOverflowText, titleFitChars } from '$lib/fitTitle';
   import { formatNewsDate, getNewsSummaries } from '$lib/news/posts';
 
+  export let data;
+
   const news = getNewsSummaries();
 
   type HomeCard = {
@@ -195,12 +197,12 @@
       </div>
       <a
         class="download"
-        href="https://github.com/WindrunnerWoW/windrunner-wow/releases/latest"
+        href={data.downloadHref}
         target="_blank"
         rel="noopener noreferrer"
       >
         <span class="download-icon" aria-hidden="true"></span>
-        Download
+        Download{data.downloadVersion ? ` ${data.downloadVersion}` : ''}
       </a>
     </div>
     <div class="hero-ornament"></div>
