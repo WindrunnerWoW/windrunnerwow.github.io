@@ -6,6 +6,7 @@ category: "Feature Spotlight"
 author: "WrkX"
 tags: "feature, crafting orders"
 image: "/art/crafting-orders/hero.webp"
+discussion: "13"
 ---
 
 ### What is a Crafting Order
