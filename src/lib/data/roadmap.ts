@@ -70,8 +70,8 @@ export const roadmap: RoadmapEntry[] = [
     ]
   },
   {
-    status: 'now',
-    marker: 'Development finished',
+    status: 'completed',
+    marker: 'Rolled out',
     title: 'Crafting Orders',
     when: '1.18.2',
     summary:
@@ -85,8 +85,8 @@ export const roadmap: RoadmapEntry[] = [
     ]
   },
   {
-    status: 'now',
-    marker: 'Development finished',
+    status: 'completed',
+    marker: 'Rolled out',
     title: 'Reagent Bank',
     when: '1.18.2',
     summary:
@@ -100,8 +100,8 @@ export const roadmap: RoadmapEntry[] = [
     ]
   },
   {
-    status: 'now',
-    marker: 'Work in Progress',
+    status: 'completed',
+    marker: 'Rolled out',
     title: 'Donation Point Rework',
     when: '1.18.2',
     summary:
@@ -115,8 +115,8 @@ export const roadmap: RoadmapEntry[] = [
     ]
   },
   {
-    status: 'planned',
-    marker: 'Coming Soon',
+    status: 'now',
+    marker: 'Work in Progress',
     title: 'Companion Recruiter Guild',
     when: '1.18.3',
     summary:
@@ -130,10 +130,10 @@ export const roadmap: RoadmapEntry[] = [
     ]
   },
   {
-    status: 'planned',
-    marker: 'Coming Soon',
+    status: 'now',
+    marker: 'Development finished',
     title: 'Windrunner Launcher',
-    when: '1.18.3',
+    when: 'very soon',
     summary:
       'The Windrunner Launcher will allow you to launch the game without having to know anything. I will set up the server, game, take care of the updates and more.',
     images: [
@@ -143,8 +143,8 @@ export const roadmap: RoadmapEntry[] = [
     ]
   },
   {
-    status: 'planned',
-    marker: 'Planned',
+    status: 'now',
+    marker: 'Generation in Progress',
     title: 'Windrunner Voiceover',
     when: '1.18.3',
     summary:
