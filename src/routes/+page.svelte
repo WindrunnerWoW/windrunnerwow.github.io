@@ -7,7 +7,7 @@
 
   export let data;
 
-  const news = getNewsSummaries();
+  const news = getNewsSummaries().slice(0, 3);
 
   type HomeCard = {
     eyebrow: string;
