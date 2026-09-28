@@ -279,6 +279,13 @@ export const stolenAssets: StolenAsset[] = [
     by: 'Harlan Elam',
     source: 'https://dribbble.com/shots/6175355-World-of-Warcraft-Vector-Class-Icons',
     usedOn: page('/talents', 'Talents')
+  },
+  {
+    title: 'Release Picture 1',
+    src: '/art/news/release_1.webp',
+    usedOn: page('/news', 'News'),
+    by: 'Jason Kang & Jomaro Kindred',
+    source: 'https://www.artstation.com/artwork/04mo4'
   }
 ];
 
@@ -286,7 +293,6 @@ export function creatorName(asset: StolenAsset) {
   return asset.by?.trim() || TURTLECRAFT;
 }
 
-/** Click target for the author name: the piece's `source`, or the shared creator profile link. */
 export function creatorHref(asset: StolenAsset) {
   return asset.source || creators[creatorName(asset)]?.href;
 }
