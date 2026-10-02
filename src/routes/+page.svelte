@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import Header from '$lib/components/Header.svelte';
   import Footer from '$lib/components/Footer.svelte';
   import NewsTitle from '$lib/components/NewsTitle.svelte';
@@ -6,6 +7,17 @@
   import { formatNewsDate, getNewsSummaries } from '$lib/news/posts';
 
   export let data;
+
+  let downloadHref = data.downloadHref;
+
+  onMount(() => {
+    const userAgent = navigator.userAgent;
+    if (/Windows NT/i.test(userAgent) && !/Android/i.test(userAgent)) {
+      downloadHref = 'https://github.com/WindrunnerWoW/windrunner-launcher/releases/latest/download/WindrunnerLauncher.exe';
+    } else if (/Linux/i.test(userAgent) && !/Android|CrOS/i.test(userAgent)) {
+      downloadHref = 'https://github.com/WindrunnerWoW/windrunner-launcher/releases/latest/download/WindrunnerLauncher.AppImage';
+    }
+  });
 
   const news = getNewsSummaries().slice(0, 3);
 
@@ -197,7 +209,7 @@
       </div>
       <a
         class="download"
-        href={data.downloadHref}
+        href={downloadHref}
         target="_blank"
         rel="noopener noreferrer"
       >
