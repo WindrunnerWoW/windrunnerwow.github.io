@@ -399,18 +399,23 @@ export const knowledgeBase: KnowledgeEntry[] = [
     href: '/features/classes/druid'
   },
   {
-    title: 'Companion Recruiter Guild',
-    category: 'Upcoming',
-    aliases: ['companions', 'hirelings'],
-    summary: 'Planned for 1.18.3. Recruit companions to help on the road.',
-    href: '/roadmap'
-  },
-  {
     title: 'Windrunner Launcher',
-    category: 'Upcoming',
-    aliases: ['client'],
-    summary: 'Planned launcher that installs the game, points at the server, and handles updates.',
-    href: '/roadmap'
+    category: 'Systems',
+    aliases: [
+      'client',
+      'launcher beta',
+      'client download',
+      'realmlist',
+      'mod manager',
+      'addons',
+      'vanillatweaks',
+      'portable',
+      'appimage',
+      'usb'
+    ],
+    summary:
+      'Tool that downloads and patches the client, manages mods and addons, and runs a full server from one portable folder.',
+    href: '/launcher'
   },
   {
     title: 'Runecrafting',
