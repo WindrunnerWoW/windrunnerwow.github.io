@@ -131,7 +131,7 @@ export const roadmap: RoadmapEntry[] = [
   },
   {
     status: 'now',
-    marker: 'Development finished',
+    marker: 'Testing in Progress',
     title: 'Windrunner Launcher',
     when: 'very soon',
     summary:
@@ -143,8 +143,8 @@ export const roadmap: RoadmapEntry[] = [
     ]
   },
   {
-    status: 'now',
-    marker: 'Generation in Progress',
+    status: 'now', 
+    marker: 'Testing in Progress',
     title: 'Windrunner Voiceover',
     when: '1.18.3',
     summary:
@@ -179,7 +179,7 @@ export const roadmap: RoadmapEntry[] = [
     summary:
       'Launcher and auto setup for Linux.',
     images: [
-      { src: '/art/roadmap/linux.webp', alt: 'Zone Improvements' }
+      { src: '/art/roadmap/linux.webp', alt: 'Linux Support' }
     ]
   },
   {
@@ -191,6 +191,17 @@ export const roadmap: RoadmapEntry[] = [
       'Improvements to the zones. Turtle Wow created new zones, some are still missing polishing.',
     images: [
       { src: '/art/roadmap/Telabim.webp', alt: 'Zone Improvements' }
+    ]
+  },
+  {
+    status: 'horizon',
+    marker: 'Horizon',
+    title: 'Hearthstone CCG',
+    when: 'TBD',
+    summary:
+      'You might think: WTF? But yes, WoW already has a lot of content, but every great game a Card Game integrated. Also, more content just for the fun of it.',
+    images: [
+      { src: '/art/roadmap/hearthstone.webp', alt: 'Hearthstone' }
     ]
   },
   {

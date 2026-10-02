@@ -5,7 +5,7 @@
       <div class="eyebrow">MYSTERIES, REWORKED FOR SINGLE-PLAYER</div>
       <h3>A familiar world. A different journey.</h3>
     </div>
-    <div class="links"><a href="/news">News</a><a href="/rss.xml" data-sveltekit-reload>RSS</a><a href="/changelog">Changelog</a><a href="/roadmap">Roadmap</a><a href="/talents">Talents</a><a href="/db">DB</a><a href="/discord">Discord</a><a href="/stolen-assets">Stolen Assets</a></div>
+    <div class="links"><a href="/news">News</a><a href="/rss.xml" data-sveltekit-reload>RSS</a><a href="/changelog">Changelog</a><a href="/roadmap">Roadmap</a><a href="/launcher">Launcher</a><a href="/talents">Talents</a><a href="/db">DB</a><a href="/discord">Discord</a><a href="/stolen-assets">Stolen Assets</a></div>
   </div>
 </footer>
 <style>
