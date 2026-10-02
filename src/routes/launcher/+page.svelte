@@ -1,25 +1,58 @@
 <script lang="ts">
-  import Header from '$lib/components/Header.svelte';
-  import Footer from '$lib/components/Footer.svelte';
+  import Header from "$lib/components/Header.svelte";
+  import Footer from "$lib/components/Footer.svelte";
+
+  const releasesUrl =
+    "https://github.com/WindrunnerWoW/windrunner-launcher/releases";
+  const repoUrl = "https://github.com/WindrunnerWoW/windrunner-launcher";
+  const discussionUrl =
+    "https://github.com/WindrunnerWoW/windrunnerwow.github.io/discussions/17";
 
   const shot = {
-    src: '/art/news/launcher_release.webp',
-    alt: 'The Windrunner Launcher, with the realm destination, news from the realm, and an update button'
+    src: "/art/news/launcher_release.webp",
+    alt: "The Windrunner Launcher, with the realm destination, news from the realm, and an update button",
   };
 
   const notes = [
     {
-      name: 'Setup',
-      copy: 'The launcher installs the client and points it at Windrunner. No realmlist, patch folder, or server address to type in.'
+      name: "Client",
+      copy: "It downloads the game for you and keeps it patched afterwards. No hunting for a patch someone uploaded.",
     },
     {
-      name: 'Updates',
-      copy: 'When a new build is ready, the same window downloads it and tells you when you can play.'
+      name: "Mods",
+      copy: "Community mods and VanillaTweaks settings in one panel. Switch something off because it annoys you, it is still off next week.",
     },
     {
-      name: 'News',
-      copy: 'Patch notes and announcements sit beside the play button, so you see what changed before you log in.'
-    }
+      name: "Addons",
+      copy: "Install and update addons through the launcher, so you are not copying folders into Interface by hand.",
+    },
+    {
+      name: "Server",
+      copy: "Windrunner server, database and all, running on your machine. Start it, play on it, and it saves the world when you stop.",
+    },
+    {
+      name: "Updates",
+      copy: "Server, client and launcher updates come from one place. If an update goes wrong, it rolls back instead of leaving a broken install.",
+    },
+    {
+      name: "Realms",
+      copy: "Pick Windrunner and press play. Add a friend server (or other turtle wow forks) by putting their realm IP into the list and connect to that one too.",
+    },
+  ];
+
+  const portable = [
+    {
+      name: "No system install",
+      copy: "It does not install itself into Windows, touch the registry, or leave a service running after you close it.",
+    },
+    {
+      name: "Easy management",
+      copy: "Everything it needs sits in the folder you put it in. That folder can be pn a USB stick, a second drive, wherever. If you ever want it gone, you delete the folder.",
+    },
+    {
+      name: "Nothing reported back",
+      copy: "No telemetry. There is nothing to opt out of, because there is nothing being sent.",
+    },
   ];
 
   let lightbox = false;
@@ -37,22 +70,46 @@
   <title>Launcher - Windrunner</title>
   <meta
     name="description"
-    content="The Windrunner Launcher installs the game, points it at the server, and handles updates and news from one window."
+    content="The Windrunner Launcher downloads the client, manages mods and addons, runs a full server, and handles updates, all from one portable folder."
   />
 </svelte:head>
 
-<svelte:window on:keydown={(e) => e.key === 'Escape' && closeShot()} />
+<svelte:window on:keydown={(e) => e.key === "Escape" && closeShot()} />
 
 <Header />
 <main>
   <section class="intro">
     <div class="kicker">TOOLS</div>
     <h1>Launcher</h1>
+    <span class="beta">Beta</span>
     <p>
-      The Windrunner Launcher sets up the game, points it at the server, and keeps it current. You open one window. It
-      handles the rest.
+      The client, your mods, the addons, the updates and a whole server, running
+      on your own machine, without the troubles.
     </p>
-    <button type="button" class="banner" aria-label="Enlarge Launcher screenshot" on:click={openShot}>
+    <div class="actions">
+      <a
+        class="cta primary"
+        href={releasesUrl}
+        target="_blank"
+        rel="noopener noreferrer">Download</a
+      >
+      <a class="cta" href={repoUrl} target="_blank" rel="noopener noreferrer"
+        >Source</a
+      >
+      <a class="cta" href="/news/LauncherBeta">Release post</a>
+      <a
+        class="cta"
+        href={discussionUrl}
+        target="_blank"
+        rel="noopener noreferrer">Discussion</a
+      >
+    </div>
+    <button
+      type="button"
+      class="banner"
+      aria-label="Enlarge Launcher screenshot"
+      on:click={openShot}
+    >
       <img src={shot.src} alt={shot.alt} />
     </button>
   </section>
@@ -64,16 +121,26 @@
     </div>
     <div class="copy">
       <p>
-        Setup is a button. The launcher fetches the client, wires it to the Windrunner realm, and leaves you with a
-        destination you can launch. You do not have to know where the files live or which patch you are on.
+        Setup used to mean downloading files, getting the maps, dropping in a
+        config, patching the client, and trusting that it all held together.
+        Then doing it again three months later because a changelog said nothing
+        more than "server files updated".
       </p>
       <p>
-        Status sits under the destination: what is installed, whether an update is waiting, and when the client is
-        ready. Client, server, and settings stay in the top bar for the times you need them.
+        The launcher takes that part away. It downloads the client, wires it to
+        a realm, starts the server, and keeps everything current. It knows what
+        the client is supposed to look like, where the mods go, and what a
+        server update needs to touch. None of that is your job anymore.
       </p>
       <p>
-        News from the realm is listed in the same window. Updates, fixes, and stories from the team are there before
-        you press play, instead of living on a separate page you have to remember to check.
+        Updates are backed up before they happen. If one goes wrong, it puts
+        everything back the way it was and tells you what happened, instead of
+        costing you the evening. A damaged world database or client can be
+        repaired from the same place.
+      </p>
+      <p>
+        Your account is created in the launcher too. It is not installing a
+        service and handing you an opaque black box that happens to be playable.
       </p>
     </div>
   </section>
@@ -81,13 +148,47 @@
   <section class="notes">
     <div class="section-heading">
       <div class="kicker">WHAT IT COVERS</div>
-      <h2>Game, server,<br /><em>and the news.</em></h2>
+      <h2>Client, server,<br /><em>and everything in between.</em></h2>
     </div>
     <div class="notes-grid">
       {#each notes as note}
         <article>
           <h3>{note.name}</h3>
           <p>{note.copy}</p>
+        </article>
+      {/each}
+    </div>
+  </section>
+
+  <section class="body">
+    <div>
+      <div class="kicker">PORTABLE</div>
+      <h2>It stays<br /><em>where you put it.</em></h2>
+    </div>
+    <div class="copy">
+      <p>
+        The launcher does not install itself into Windows, does not write
+        registry entries, and does not leave a service running behind your back.
+        Everything it needs lives in the folder it sits in.
+      </p>
+      <p>
+        That makes the whole installation movable. Put it on a USB stick, a
+        second hard drive, or the desktop of a laptop you do not use that often,
+        and it works the same way there.
+      </p>
+    </div>
+  </section>
+
+  <section class="notes">
+    <div class="section-heading">
+      <div class="kicker">NO FOOTPRINT</div>
+      <h2>Nothing it does<br /><em>outlives it.</em></h2>
+    </div>
+    <div class="notes-grid">
+      {#each portable as item}
+        <article>
+          <h3>{item.name}</h3>
+          <p>{item.copy}</p>
         </article>
       {/each}
     </div>
@@ -99,7 +200,7 @@
   <div
     class="lightbox"
     on:click={closeShot}
-    on:keydown={(e) => e.key === 'Escape' && closeShot()}
+    on:keydown={(e) => e.key === "Escape" && closeShot()}
     role="dialog"
     aria-modal="true"
     tabindex="-1"
@@ -111,8 +212,11 @@
 <style>
   .intro {
     padding: 150px clamp(24px, 8vw, 130px) 40px;
-    background:
-      radial-gradient(circle at 50% 0%, rgba(92, 73, 42, 0.16), transparent 28rem),
+    background: radial-gradient(
+        circle at 50% 0%,
+        rgba(92, 73, 42, 0.16),
+        transparent 28rem
+      ),
       #090b0c;
   }
   .intro h1 {
@@ -125,11 +229,51 @@
   }
   .intro p {
     max-width: 760px;
-    margin: 0 0 48px;
+    margin: 0 0 32px;
     font-family: var(--font-body);
     font-size: 18px;
     line-height: 1.85;
     color: #b1a898;
+  }
+  .beta {
+    display: inline-block;
+    margin-bottom: 22px;
+    padding: 5px 10px;
+    border: 1px solid #80663a;
+    color: #c7b382;
+    font: 10px / 1 var(--font-body);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 0 0 48px;
+  }
+  .cta {
+    display: inline-block;
+    padding: 14px 18px;
+    border: 1px solid #80663a;
+    color: #c7b382;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+  }
+  .cta:hover {
+    border-color: #c7b382;
+    color: #e3d3ab;
+  }
+  .cta.primary {
+    background: #ad884b;
+    border-color: #ad884b;
+    color: #0d0c0a;
+  }
+  .cta.primary:hover {
+    background: #c7b382;
+    border-color: #c7b382;
+    color: #0d0c0a;
   }
   .banner {
     display: block;
@@ -173,9 +317,17 @@
     font-size: 17px;
     line-height: 1.9;
   }
+  .copy .link {
+    color: #c7b382;
+  }
   .notes {
     padding: 40px clamp(24px, 8vw, 130px) 120px;
-    background: radial-gradient(circle at 18% 20%, rgba(102, 76, 38, 0.1), transparent 32%), #090b0c;
+    background: radial-gradient(
+        circle at 18% 20%,
+        rgba(102, 76, 38, 0.1),
+        transparent 32%
+      ),
+      #090b0c;
   }
   .section-heading {
     max-width: 720px;
