@@ -399,13 +399,6 @@ export const knowledgeBase: KnowledgeEntry[] = [
     href: '/features/classes/druid'
   },
   {
-    title: 'Companion Guild',
-    category: 'Upcoming',
-    aliases: ['companions', 'hirelings', 'companion recruiter guild'],
-    summary: 'Find a recruiter in any inn and hire companions to travel with you.',
-    href: '/companion-guild'
-  },
-  {
     title: 'Windrunner Launcher',
     category: 'Systems',
     aliases: [
