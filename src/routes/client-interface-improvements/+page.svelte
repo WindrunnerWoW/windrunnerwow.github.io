@@ -1,7 +1,7 @@
 <script lang="ts">
   import StoryPage from '$lib/components/StoryPage.svelte';
 
-  const improvements = [
+  const improvements: { title: string; copy: string; src: string; alt: string; href?: string }[] = [
     {
       title: 'Improved Profession UI',
       copy: 'The profession UI is now larger, with extra options such as Have materials and Provides skill-up. A search bar along the bottom of the recipe list saves you from endless scrolling.',
@@ -55,6 +55,13 @@
       copy: 'From the sands of the Blood Ring to the timeless conflicts of Sunnyglade Valley, there are many opportunities to earn fame and glory for your faction.',
       src: '/art/client-ui/battleground-finder.webp',
       alt: 'Battleground finder opened from the minimap'
+    },
+    {
+      title: 'Windrunner Voiceover',
+      copy: "Stay a while and listen. This fork of MrThingers Voiceover reads quest text aloud, fixes wrong voices for quests shared across multiple questgivers, and ships with voice data for all Turtle WoW quests. New Windrunner quests get voiced too — update via the Launcher.",
+      src: '/art/news/vo_addon.webp',
+      alt: 'Windrunner Voiceover addon showing voiced quest text in-game',
+      href: '/voiceover'
     }
   ];
 
@@ -96,9 +103,12 @@
           <img src={item.src} alt={item.alt} />
         </button>
         <div class="copy">
-          <div class="kicker">0{i + 1}</div>
+          <div class="kicker">{i + 1 < 10 ? `0${i + 1}` : `${i + 1}`}</div>
           <h3>{item.title}</h3>
           <p>{item.copy}</p>
+          {#if item.href}
+            <a class="more" href={item.href}>Read more →</a>
+          {/if}
         </div>
       </article>
     {/each}
@@ -165,6 +175,18 @@
     margin: 0;
     color: #9c9487;
     font: 17px / 1.85 var(--font-body);
+  }
+  .more {
+    display: inline-block;
+    margin-top: 16px;
+    color: #c6a366;
+    font: 12px / 1 var(--font-ui);
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .more:hover {
+    color: #e3d3ab;
   }
   .lightbox {
     position: fixed;

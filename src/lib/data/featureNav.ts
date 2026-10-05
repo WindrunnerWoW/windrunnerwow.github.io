@@ -288,6 +288,14 @@ export const featureCategories: FeatureCategory[] = [
         title: 'Client Improvements',
         summary: 'Vanilla-style interface upgrades - collections, maps, tradeskill, and more - without extra add-ons.',
         image: art.ui
+      },
+      {
+        slug: 'voiceover',
+        href: '/voiceover',
+        eyebrow: 'ADDON',
+        title: 'Windrunner Voiceover',
+        summary: 'Quest text read aloud — fixed multi-giver voices, restyled UI, full Turtle WoW data via the Launcher.',
+        image: '/art/news/vo_addon.webp'
       }
     ]
   }
