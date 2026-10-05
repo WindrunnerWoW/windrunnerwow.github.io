@@ -116,7 +116,7 @@ export const roadmap: RoadmapEntry[] = [
   },
   {
     status: 'now',
-    marker: 'Work in Progress',
+    marker: 'waiting for release',
     title: 'Companion Recruiter Guild',
     when: '1.18.3',
     summary:
@@ -130,23 +130,23 @@ export const roadmap: RoadmapEntry[] = [
     ]
   },
   {
-    status: 'now',
-    marker: 'Testing in Progress',
+    status: 'completed',
+    marker: 'Rolled out',
     title: 'Windrunner Launcher',
-    when: 'very soon',
+    when: 'done',
     summary:
       'The Windrunner Launcher will allow you to launch the game without having to know anything. I will set up the server, game, take care of the updates and more.',
     images: [
       { src: '/art/roadmap/launcher.webp', alt: 'Windrunner Launcher' }
-    ],items: [
+    ], items: [
       'Game and server setup, launch, updates, news, all in one place.',
     ]
   },
   {
-    status: 'now', 
-    marker: 'Testing in Progress',
+    status: 'completed',
+    marker: 'Released',
     title: 'Windrunner Voiceover',
-    when: '1.18.3',
+    when: 'done',
     summary:
       'The Voiceover addon is great, but missing the custom quests. Let\'s fix that.',
     images: [
@@ -158,8 +158,8 @@ export const roadmap: RoadmapEntry[] = [
     ],
   },
   {
-    status: 'planned',
-    marker: 'Planned',
+    status: 'now',
+    marker: 'Testing in progress',
     title: 'Raid Reworks',
     when: '1.18.3',
     summary:
