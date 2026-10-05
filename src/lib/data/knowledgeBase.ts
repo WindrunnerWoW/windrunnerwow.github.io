@@ -275,6 +275,13 @@ export const knowledgeBase: KnowledgeEntry[] = [
     href: '/dynamic-mount-speed'
   },
   {
+    title: 'Windrunner Voiceover',
+    category: 'Travel & Interface',
+    aliases: ['voiceover', 'addon', 'quest voices', 'mrthinger'],
+    summary: 'Addon that reads quest text aloud — fixed multi-giver voices, full Turtle WoW data, updated via the Launcher.',
+    href: '/voiceover'
+  },
+  {
     title: 'Hardcore',
     category: 'Challenges',
     aliases: ['immortal', 'inferno'],

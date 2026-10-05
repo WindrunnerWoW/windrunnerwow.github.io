@@ -29,7 +29,7 @@
       <p>
         Transport routes open forgotten corners. Mount speed scales with
         the journey so the first mount never falls off. Client improvements keep Vanilla’s look while adding collections,
-        maps, and tradeskill tools.
+        maps, and tradeskill tools — and Windrunner Voiceover reads quest text aloud.
       </p>
     </div>
   </section>
