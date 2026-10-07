@@ -184,6 +184,12 @@
       text: 'Keep nearly unlimited crafting materials out of your bags from any banker.', href: '/material-storage',
       image: '/art/material-storage/hero.webp',
       position: 'center'
+    },
+    {
+      eyebrow: 'Interface', title: 'Voiceover', wide: false,
+      text: 'Let the game read the quest texts out loud for a more immersive experience', href: '/voiceover',
+      image: '/art/news/vo_addon.webp',
+      position: 'center'
     }
   ];
 </script>
