@@ -71,7 +71,7 @@ export const roadmap: RoadmapEntry[] = [
   },
   {
     status: 'completed',
-    marker: 'Rolled out',
+    marker: 'Released',
     title: 'Crafting Orders',
     when: '1.18.2',
     summary:
@@ -86,7 +86,7 @@ export const roadmap: RoadmapEntry[] = [
   },
   {
     status: 'completed',
-    marker: 'Rolled out',
+    marker: 'Released',
     title: 'Reagent Bank',
     when: '1.18.2',
     summary:
@@ -101,7 +101,7 @@ export const roadmap: RoadmapEntry[] = [
   },
   {
     status: 'completed',
-    marker: 'Rolled out',
+    marker: 'Released',
     title: 'Donation Point Rework',
     when: '1.18.2',
     summary:
@@ -115,8 +115,8 @@ export const roadmap: RoadmapEntry[] = [
     ]
   },
   {
-    status: 'now',
-    marker: 'waiting for release',
+    status: 'completed',
+    marker: 'Released',
     title: 'Companion Recruiter Guild',
     when: '1.18.3',
     summary:
@@ -131,7 +131,7 @@ export const roadmap: RoadmapEntry[] = [
   },
   {
     status: 'completed',
-    marker: 'Rolled out',
+    marker: 'Released',
     title: 'Windrunner Launcher',
     when: 'done',
     summary:
@@ -158,8 +158,8 @@ export const roadmap: RoadmapEntry[] = [
     ],
   },
   {
-    status: 'now',
-    marker: 'Testing in progress',
+    status: 'completed',
+    marker: 'Released',
     title: 'Raid Reworks',
     when: '1.18.3',
     summary:
