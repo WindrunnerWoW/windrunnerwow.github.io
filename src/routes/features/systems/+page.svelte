@@ -27,9 +27,10 @@
     </div>
     <div class="copy">
       <p>
-        Guild Vaults and Guild Quarters give a roster a treasury
-        and a tavern. Raids & Dungeons add optional rooms and threats to familiar instances. Leveling Challenges change
-        the rules for players who want a harder path. Arena & Battlegrounds is the PvP lane when glory is the point.
+        Guild Vaults and Guild Quarters give a roster a treasury and a tavern. The Companion Guild posts recruiters in
+        every inn so you can hire help for the road. Raids & Dungeons add optional rooms and threats to familiar
+        instances. Leveling Challenges change the rules for players who want a harder path. Arena & Battlegrounds is
+        the PvP lane when glory is the point.
       </p>
     </div>
   </section>

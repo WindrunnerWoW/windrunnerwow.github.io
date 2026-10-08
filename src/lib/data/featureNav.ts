@@ -209,7 +209,8 @@ export const featureCategories: FeatureCategory[] = [
     title: 'Systems',
     eyebrow: 'SYSTEMS',
     heading: 'Guilds, groups, and optional rules.',
-    intro: 'Shared treasuries and taverns, dungeon and raid additions, PvP, and leveling challenges that change the journey.',
+    intro:
+      'Shared treasuries and taverns, companions hired at the inn, dungeon and raid additions, PvP, and leveling challenges that change the journey.',
     listingKicker: 'SYSTEMS',
     heroImage: art.raids,
     links: [
@@ -228,6 +229,15 @@ export const featureCategories: FeatureCategory[] = [
         title: 'Guild Quarters',
         summary: 'Give the guild a tavern home anywhere in Azeroth.',
         image: art.guildQuarters
+      },
+      {
+        slug: 'companion-guild',
+        href: '/companion-guild',
+        eyebrow: 'SYSTEMS',
+        title: 'Companion Guild',
+        summary: 'Find a recruiter and hire companions to travel with you.',
+        image: art.companionGuild,
+        position: '70% 55%'
       },
       {
         slug: 'raids',

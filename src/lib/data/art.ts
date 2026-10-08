@@ -26,6 +26,7 @@ export const art = {
   guildVaults: '/art/features/guild-vaults.webp',
   guildQuarters: '/art/features/guild-quarters.webp',
   guildQuartersHero: '/art/features/guild-quarters-hero.jpg',
+  companionGuild: '/art/roadmap/companion_guild.webp',
   customization: '/art/features/customization.webp',
   pets: '/art/features/pets.webp',
   titles: '/art/features/titles.webp',
