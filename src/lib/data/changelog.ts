@@ -37,6 +37,35 @@ export function getChangelogEntry(slug: string): ChangelogPageEntry | undefined 
 
 export const changelog: ChangelogEntry[] = [
   {
+    version: '1.18.3',
+    date: 'October 1, 2026',
+    summary: 'The companion guild is opening its doors and raids receive some changes.',
+    sections: [
+      {
+        title: 'General',
+        items: [
+          'The companion guild found its way to Azeroth. You can find companion recruiters in each Inn in the world, visit them and they can help you find companions to help you. Read more on its dedicated [feature page](/companion-guild).',
+          'The DungeonClear Addon is now included'
+        ]
+      },
+      {
+        title: 'Raids',
+        items: [
+          'All raids that were 40 player raids before are now 20 player raids.',
+        ]
+      },
+      {
+        title: 'Bugfixes',
+        items: [
+          'A lot of fixes were done on [tortoise-wow](https://github.com/tortoise-wow/tortoise-wow), all included here.',
+          'A lot of playerbot fixes, especially for dungeons and dungeon clear.',
+          'The weeklies added in patch 1.18.2 are now correctly categorized in their respective city, instead of having a broken header in the quest log.',
+          'Multiple breaking bugs in the Dungeon Clear module were fixed.'
+        ]
+      }
+    ]
+  },
+  {
     version: '1.18.2',
     date: 'September 15, 2026',
     summary: 'The first release of Windrunner.',
