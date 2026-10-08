@@ -286,6 +286,13 @@ export const stolenAssets: StolenAsset[] = [
     usedOn: page('/news', 'News'),
     by: 'Jason Kang & Jomaro Kindred',
     source: 'https://www.artstation.com/artwork/04mo4'
+  },
+  {
+    title: 'Release Picture 2',
+    src: '/art/news/release_2.webp',
+    usedOn: page('/news', 'News'),
+    by: 'Eric Braddock',
+    source: 'https://www.artstation.com/artwork/3R1QJ'
   }
 ];
 
