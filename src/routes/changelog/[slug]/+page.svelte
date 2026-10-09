@@ -84,7 +84,7 @@
       #090b0c;
     background-size: 90px 100%;
   }
-  .release { max-width: 1060px; }
+  .release { max-width: 1060px; margin: 0 auto; }
   .back {
     display: inline-block;
     margin-bottom: 38px;
@@ -135,6 +135,7 @@
     position: relative;
     z-index: 1;
     max-width: 1060px;
+    margin: 0 auto;
   }
   @keyframes backdrop-in {
     from { opacity: 0; }
