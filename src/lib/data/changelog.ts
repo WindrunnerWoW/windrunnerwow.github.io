@@ -15,6 +15,7 @@ export type ChangelogEntry = {
   version: string;
   date: string;
   summary: string;
+  image?: string;
   sections: ChangelogSection[];
 };
 
@@ -40,6 +41,7 @@ export const changelog: ChangelogEntry[] = [
     version: '1.18.3',
     date: 'October 1, 2026',
     summary: 'The companion guild is opening its doors and raids receive some changes.',
+    image: '/art/news/release_2.webp',
     sections: [
       {
         title: 'General',
@@ -69,6 +71,7 @@ export const changelog: ChangelogEntry[] = [
     version: '1.18.2',
     date: 'September 15, 2026',
     summary: 'The first release of Windrunner.',
+    image: '/art/news/release_1.webp',
     sections: [
       {
         title: 'General',

@@ -22,6 +22,9 @@
     <div class="release-grid">
       {#each data.entries as entry}
         <a class="release-card" href="/changelog/{entry.slug}" data-changelog-card={entry.slug}>
+          {#if entry.image}
+            <img class="card-image" src={entry.image} alt="" loading="lazy" />
+          {/if}
           <div class="card-top" data-changelog-part="meta">
             <span class="card-kind">Release notes</span>
             <span class="date">{entry.date}</span>
@@ -93,6 +96,28 @@
     inset: 8px;
     border: 1px solid rgba(139, 105, 54, .13);
     pointer-events: none;
+    z-index: 2;
+  }
+  .card-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(.32) saturate(.8);
+    transition: filter .25s ease, transform .4s ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .release-card:hover .card-image {
+    filter: brightness(.42) saturate(.9);
+    transform: scale(1.03);
+  }
+  .card-top,
+  .card-main,
+  .card-bottom {
+    position: relative;
+    z-index: 1;
   }
   .release-card:hover {
     transform: translateY(-4px);

@@ -13,26 +13,33 @@
 
 <Header />
 <main class="inner">
-  <article class="release">
-    <a class="back" href="/changelog">← Patch archive</a>
+  <div class="intro">
+    {#if data.entry.image}
+      <img class="intro-image" src={data.entry.image} alt="" />
+    {/if}
+    <div class="intro-content">
+      <a class="back" href="/changelog">← Patch archive</a>
 
-    <header class="release-heading" data-changelog-card={data.entry.slug}>
-      <div class="heading-meta" data-changelog-part="meta">
-        <span>Release notes</span>
-        <span>{data.entry.date}</span>
-      </div>
-      <h1 data-changelog-part="version">{data.entry.version}</h1>
-      <p data-changelog-part="summary">{data.entry.summary}</p>
-    </header>
+      <header class="release-heading" data-changelog-card={data.entry.slug}>
+        <div class="heading-meta" data-changelog-part="meta">
+          <span>Release notes</span>
+          <span>{data.entry.date}</span>
+        </div>
+        <h1 data-changelog-part="version">{data.entry.version}</h1>
+        <p data-changelog-part="summary">{data.entry.summary}</p>
+      </header>
 
-    <section class="changes" aria-labelledby="changes-title">
       <div class="changes-heading">
         <div>
           <div class="kicker">WHAT CHANGED</div>
           <h2 id="changes-title">Patch notes</h2>
         </div>
       </div>
+    </div>
+  </div>
 
+  <article class="release">
+    <section class="changes" aria-labelledby="changes-title">
       <div class="patch-sections">
         {#each data.entry.sections as section}
           <section class="patch-section">
@@ -69,13 +76,15 @@
 <style>
   .inner {
     min-height: 72vh;
-    padding: 150px clamp(24px, 8vw, 130px) 120px;
+    --pad-x: clamp(24px, 8vw, 130px);
+    --pad-top: 150px;
+    padding: var(--pad-top) var(--pad-x) 120px;
     background:
       linear-gradient(90deg, rgba(126, 89, 39, .035) 1px, transparent 1px),
       #090b0c;
     background-size: 90px 100%;
   }
-  .release { max-width: 1060px; }
+  .release { max-width: 1060px; margin: 0 auto; }
   .back {
     display: inline-block;
     margin-bottom: 38px;
@@ -93,7 +102,7 @@
     background:
       radial-gradient(circle at 88% 12%, rgba(160, 114, 48, .14), transparent 30rem),
       linear-gradient(145deg, rgba(84, 59, 28, .11), transparent 55%),
-      #0d0f10;
+      rgba(13, 15, 16, .55);
   }
   .release-heading::before {
     content: '';
@@ -101,6 +110,36 @@
     inset: 9px;
     border: 1px solid rgba(159, 119, 59, .16);
     pointer-events: none;
+    z-index: 1;
+  }
+  .intro {
+    position: relative;
+    margin: calc(-1 * var(--pad-top)) calc(-1 * var(--pad-x)) 0;
+    padding: var(--pad-top) var(--pad-x) 0;
+  }
+  .intro-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    filter: brightness(.34) saturate(.8);
+    animation: backdrop-in 1.1s ease both;
+    mask-image: linear-gradient(to bottom, #000 60%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, #000 60%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .intro-content {
+    position: relative;
+    z-index: 1;
+    max-width: 1060px;
+    margin: 0 auto;
+  }
+  @keyframes backdrop-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
   .heading-meta {
     display: flex;
@@ -126,9 +165,14 @@
     color: #a39a8d;
     font: 19px/1.72 var(--font-body);
   }
-  .changes { padding: 88px 0 0; }
+  .changes {
+    position: relative;
+    z-index: 1;
+    padding: 0;
+  }
   .changes-heading {
-    margin-bottom: 34px;
+    margin-top: 88px;
+    padding-bottom: 34px;
   }
   .changes-heading h2 {
     margin: 12px 0 0;
@@ -173,11 +217,11 @@
   }
   .bottom { margin: 58px 0 0; }
   @media (max-width: 620px) {
-    .inner { padding-top: 126px; padding-bottom: 90px; }
+    .inner { --pad-top: 126px; padding-bottom: 90px; }
     .release-heading { padding-bottom: 42px; }
     .heading-meta { flex-direction: column; gap: 8px; }
     .release-heading h1 { margin-top: 52px; }
-    .changes { padding-top: 68px; }
+    .changes-heading { margin-top: 68px; }
     .patch-section { padding-left: 0; padding-right: 0; }
     .patch-section ul { font-size: 17px; }
     .subsection { padding-left: 18px; }
