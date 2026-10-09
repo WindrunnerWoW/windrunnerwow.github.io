@@ -5,9 +5,9 @@
     "product": "turtle-wow-client",
     "changelog": "What changed for players in this release.",
     "bootstrap": {
-      "displayName": "Vanilla 1.12 client",
-      "url": "https://drive.google.com/file/d/1Vv5P7v_uOWmCPktPpKjkNpt7URTEdzlU/view?usp=drive_link",
-      "sha256": "1DFD9F74A47E6A806666E9FA2CF761B3B57329C4A053C0B2942AB7AAEF64996C"
+      "displayName": "Vanilla 1.18.1 client",
+      "url": "https://drive.google.com/file/d/1kAfZtfaeyM1xEDEKcdVw-EH9SJs1Bepg/view?usp=sharing",
+      "sha256": "A70CFD948593188837A9EEA46124DD0FEF4E76D37F56CED7135E9B466CF32120"
     },
     "maps": {
       "displayName": "Map data (dbc/maps/vmaps/mmaps)",
