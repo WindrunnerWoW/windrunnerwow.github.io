@@ -38,8 +38,22 @@ export function getChangelogEntry(slug: string): ChangelogPageEntry | undefined 
 
 export const changelog: ChangelogEntry[] = [
   {
+    version: '1.18.3-1',
+    date: 'October 14, 2026',
+    summary: 'Hotfix',
+    image: '/art/news/release_2.webp',
+    sections: [
+      {
+        title: 'Bugfixes',
+        items: [
+          'Fixed a problem with spells that were caused by loading spells from dbc.',
+        ]
+      }
+    ]
+  },
+  {
     version: '1.18.3',
-    date: 'October 1, 2026',
+    date: 'October 10, 2026',
     summary: 'The companion guild is opening its doors and raids receive some changes.',
     image: '/art/news/release_2.webp',
     sections: [
