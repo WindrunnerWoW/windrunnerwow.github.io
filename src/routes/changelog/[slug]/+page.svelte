@@ -15,7 +15,12 @@
 <main class="inner">
   <div class="intro">
     {#if data.entry.image}
-      <img class="intro-image" src={data.entry.image} alt="" />
+      <img
+        class="intro-image"
+        src={data.entry.image}
+        alt=""
+        style={`object-position: center ${data.entry.position ?? 'top'}`}
+      />
     {/if}
     <div class="intro-content">
       <a class="back" href="/changelog">← Patch archive</a>
@@ -123,7 +128,6 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center top;
     filter: brightness(.34) saturate(.8);
     animation: backdrop-in 1.1s ease both;
     mask-image: linear-gradient(to bottom, #000 60%, transparent 100%);
