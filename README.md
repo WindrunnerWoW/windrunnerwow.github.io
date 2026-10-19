@@ -38,13 +38,30 @@ Day-to-day content lives in a few files:
 
 | Content | Where |
 | --- | --- |
-| News articles | `src/lib/content/news/` (Markdown; filename is the URL slug) |
+| News articles | `src/lib/content/news/` (Markdown; filename is the URL slug, new files are announced in Discord if hook is set up) |
 | Changelog | `src/lib/data/changelog.ts` |
 | Roadmap | `src/lib/data/roadmap.ts` |
 | Feature copy and navigation | `src/lib/data/features.ts`, `src/lib/data/featureNav.ts` |
 | Images | `static/art/` (referenced as `/art/...`) |
 
 Step-by-step notes for news, changelog, and roadmap entries are in [`howTo.md`](howTo.md).
+
+## Discord news announcements
+
+The site publishes news as RSS at `/rss.xml`. To announce new posts in Discord, create a webhook in the target channel (Channel settings → Integrations → Webhooks), then add these to the repository:
+
+| Name | Kind | Purpose |
+| --- | --- | --- |
+| `DISCORD_WEBHOOK_URL` | Actions secret | Webhook the announcement is posted to. Without it the workflow skips and only warns |
+| `DISCORD_ROLE_ID` | Actions variable (optional) | Role pinged with each announcement, e.g. `123456789012345678` |
+
+`.github/workflows/announce-news.yml` runs on every push to `main` and posts one embed per newly added file in `src/lib/content/news/` (title, summary, cover image, link, author, category, date). Editing an existing post does not re-announce it. Use the workflow's manual **Run workflow** button with a space-separated file list to re-send a specific post.
+
+Preview the payload locally without posting:
+
+```bash
+node scripts/notify-discord.mjs --dry-run src/lib/content/news/my-post.md
+```
 
 ## Client manifest
 
