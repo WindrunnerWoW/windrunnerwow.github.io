@@ -1,4 +1,4 @@
-name: Check client download links
+name: Client links
 
 on:
   schedule:
@@ -8,30 +8,39 @@ on:
     paths:
       - client.json
       - scripts/check-client-files.mjs
+  # Deliberately unfiltered: a required status check that never reports leaves
+  # pull requests stuck on "Expected - waiting for status to be reported".
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: check-client-files
-  cancel-in-progress: false
+  group: check-client-files-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   check:
+    name: client downloads reachable
     runs-on: ubuntu-latest
     env:
       DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
       DISCORD_ALERT_WEBHOOK_URL: ${{ secrets.DISCORD_ALERT_WEBHOOK_URL }}
       DISCORD_ROLE_ID: ${{ vars.DISCORD_ROLE_ID }}
     steps:
+      # Exits non-zero when a file is gone, so the run also shows up as failed in
+      # the Actions tab. Add `continue-on-error: true` here if Discord is enough.
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
 
-      # Exits non-zero when a file is gone, so the run also shows up as failed in
-      # the Actions tab. Add `continue-on-error: true` here if Discord is enough.
+      # On a pull request the verdict belongs on the Checks tab, so the run fails
+      # with an annotation on the offending manifest line instead of pinging Discord.
       - name: Check client.json download links
+        env:
+          NO_NOTIFY: ${{ github.event_name == 'pull_request' && '1' || '' }}
         run: node scripts/check-client-files.mjs client.json

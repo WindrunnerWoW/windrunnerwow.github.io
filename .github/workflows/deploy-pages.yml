@@ -36,6 +36,16 @@ jobs:
           echo "origin=$ORIGIN" >> "$GITHUB_OUTPUT"
           echo "base=$BASE" >> "$GITHUB_OUTPUT"
       - run: bun install --frozen-lockfile
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      # The manifest is generated here rather than committed: whatever client.json
+      # says in the commit being deployed is exactly what gets signed and served.
+      # A failure here fails the deploy instead of publishing a stale manifest.
+      - name: Sign client manifest
+        env:
+          CLIENT_MANIFEST_PRIVATE_KEY: ${{ secrets.CLIENT_MANIFEST_PRIVATE_KEY }}
+        run: node scripts/sign-client-manifest.mjs
       - run: bun run build
         env:
           BASE_PATH: ${{ steps.pages.outputs.base }}
