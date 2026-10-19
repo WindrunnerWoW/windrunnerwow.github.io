@@ -7,15 +7,16 @@
 //   node scripts/check-client-files.mjs --always --no-fail
 //
 // Environment:
-//   DISCORD_WEBHOOK_URL   Webhook URL of the channel that should get the warning
-//   DISCORD_ALERT_WEBHOOK_URL   Optional webhook for a monitoring channel; falls
-//                         back to DISCORD_WEBHOOK_URL when unset
-//   DISCORD_ROLE_ID       Optional role ID pinged when something is broken
-//   CHECK_TIMEOUT_MS      Per-request timeout in ms (default 30000)
-//   CHECK_ATTEMPTS        Attempts per link before it is reported broken (default 3)
-//   NOTIFY_ON_SUCCESS=1   Also post a short message when every link is fine
-//   DRY_RUN=1             Print the payload instead of posting it
-//   ALLOW_FAILURE=1       Never exit non-zero, even when a link is broken
+//   DISCORD_WEBHOOK_URL       Webhook URL of the channel that should get the warning
+//   DISCORD_ALERT_WEBHOOK_URL Optional webhook for a monitoring channel; falls back
+//                             to DISCORD_WEBHOOK_URL when unset
+//   DISCORD_ROLE_ID           Optional role ID pinged when something is broken
+//   CHECK_TIMEOUT_MS          Per-request timeout in ms (default 30000)
+//   CHECK_ATTEMPTS            Attempts per link before it is reported broken (default 3)
+//   NOTIFY_ON_SUCCESS=1       Also post a short message when every link is fine
+//   NO_NOTIFY=1               Never post to Discord; the exit code is the only report
+//   DRY_RUN=1                 Print the payload instead of posting it
+//   ALLOW_FAILURE=1           Never exit non-zero, even when a link is broken
 //
 // Exit codes: 0 healthy, 1 at least one link is broken, 2 the manifest is unusable.
 
@@ -56,6 +57,7 @@ if (args.includes('--help') || args.includes('-h')) {
 
 const dryRun = process.env.DRY_RUN === '1' || args.includes('--dry-run');
 const always = process.env.NOTIFY_ON_SUCCESS === '1' || args.includes('--always');
+const notify = !(process.env.NO_NOTIFY === '1' || args.includes('--no-notify'));
 const allowFailure = process.env.ALLOW_FAILURE === '1' || args.includes('--no-fail');
 const timeoutMs = Number(process.env.CHECK_TIMEOUT_MS) || 30000;
 const attempts = Number(process.env.CHECK_ATTEMPTS) || 3;
@@ -235,6 +237,21 @@ async function probeOnce(target) {
   }
 }
 
+// GitHub renders these on the Checks tab, pinned to the line of client.json that
+// holds the link, so a failing pull request points straight at the bad entry.
+function annotate(result) {
+  if (process.env.GITHUB_ACTIONS !== 'true') return;
+
+  const line = manifestLines.findIndex((text) => text.includes(result.fileId)) + 1;
+  const location = line > 0 ? `file=${manifestPath},line=${line},` : '';
+  const title = escapeAnnotation(result.path).replace(/,/g, '%2C').replace(/:/g, '%3A');
+  console.log(`::error ${location}title=Broken download link (${title})::${escapeAnnotation(describe(result))}`);
+}
+
+function escapeAnnotation(value) {
+  return value.replace(/%/g, '%25').replace(/\r/g, '%0D').replace(/\n/g, '%0A');
+}
+
 function describe(result) {
   if (result.state === 'ok') {
     return [result.fileName ?? 'reachable', result.fileSize ? `(${result.fileSize})` : null].filter(Boolean).join(' ');
@@ -345,6 +362,7 @@ function readManifest(file) {
 }
 
 const manifest = readManifest(manifestPath);
+const manifestLines = readFileSync(manifestPath, 'utf8').split('\n');
 const targets = collectTargets(manifest, '', { label: null, sha256: null });
 const files = targets.filter((target) => target.kind === 'file');
 const folders = targets.filter((target) => target.kind === 'folder');
@@ -373,6 +391,7 @@ for (const target of files) {
 for (const result of results) {
   const status = result.state === 'ok' ? 'OK    ' : 'BROKEN';
   console.log(`${status} ${result.path.padEnd(28)} ${describe(result)}`);
+  if (result.state !== 'ok') annotate(result);
 }
 
 const broken = results.filter((result) => result.state !== 'ok');
@@ -386,6 +405,8 @@ if (broken.length === 0 && !always) {
 
 if (dryRun) {
   console.log(JSON.stringify(payload, null, 2));
+} else if (!notify) {
+  console.log('Notification disabled (--no-notify); reporting through the exit code only.');
 } else if (!webhookUrl) {
   console.log('::warning::Neither DISCORD_ALERT_WEBHOOK_URL nor DISCORD_WEBHOOK_URL is set; checked the links but could not warn in Discord.');
 } else {
