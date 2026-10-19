@@ -1,0 +1,37 @@
+name: Check client download links
+
+on:
+  schedule:
+    - cron: '17 9 * * *'
+  push:
+    branches: [main]
+    paths:
+      - client.json
+      - scripts/check-client-files.mjs
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: check-client-files
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    env:
+      DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+      DISCORD_ALERT_WEBHOOK_URL: ${{ secrets.DISCORD_ALERT_WEBHOOK_URL }}
+      DISCORD_ROLE_ID: ${{ vars.DISCORD_ROLE_ID }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # Exits non-zero when a file is gone, so the run also shows up as failed in
+      # the Actions tab. Add `continue-on-error: true` here if Discord is enough.
+      - name: Check client.json download links
+        run: node scripts/check-client-files.mjs client.json
