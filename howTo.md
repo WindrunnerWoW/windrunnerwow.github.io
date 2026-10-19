@@ -169,6 +169,15 @@ needs to be updated. Check:
 - the `/news` list thumbnail
 - `/rss.xml` for the cover URL if the launcher needs it
 
+## 7. Announce it in Discord
+
+Pushing the new Markdown file to `main` posts it to Discord automatically
+through `.github/workflows/announce-news.yml`. The announcement uses the
+frontmatter `title`, `description`, `image`, `author`, `category`, and `date`,
+so no extra step is needed. The feed itself lives at
+`https://windrunnerwow.github.io/rss.xml` if you would rather add it to a
+Discord bot that reads RSS.
+
 ---
 
 # How to add a changelog entry
