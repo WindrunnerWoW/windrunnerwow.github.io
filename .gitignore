@@ -8,3 +8,7 @@ node_modules
 !.env.example
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# Generated at deploy time by scripts/sign-client-manifest.mjs
+/client.manifest.json
+/static/client.manifest.json
