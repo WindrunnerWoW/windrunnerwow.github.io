@@ -23,7 +23,13 @@
       {#each data.entries as entry}
         <a class="release-card" href="/changelog/{entry.slug}" data-changelog-card={entry.slug}>
           {#if entry.image}
-            <img class="card-image" src={entry.image} alt="" loading="lazy" />
+            <img
+              class="card-image"
+              src={entry.image}
+              alt=""
+              loading="lazy"
+              style={`object-position: center ${entry.position ?? 'center'}`}
+            />
           {/if}
           <div class="card-top" data-changelog-part="meta">
             <span class="card-kind">Release notes</span>
@@ -55,7 +61,7 @@
       radial-gradient(circle at 78% 8%, rgba(122, 88, 39, .1), transparent 31rem),
       #090b0c;
   }
-  .page-heading { max-width: 900px; margin-bottom: 76px; }
+  .page-heading { max-width: 900px; margin: 0 auto 76px; }
   .page-heading h1 {
     margin: 22px 0 30px;
     color: #ddd2b9;
@@ -74,6 +80,7 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 18px;
     max-width: 1180px;
+    margin: 0 auto;
   }
   .release-card {
     min-height: 330px;
@@ -159,7 +166,7 @@
   }
   .arrow { color: #b89556; font-size: 20px; transition: transform .2s ease; }
   .release-card:hover .arrow { transform: translate(3px, -3px); }
-  .empty { max-width: 640px; margin: 0; color: #91897d; font: 18px/1.8 var(--font-body); }
+  .empty { max-width: 640px; margin: 0 auto; color: #91897d; font: 18px/1.8 var(--font-body); }
   @media (max-width: 780px) {
     .inner { padding-top: 130px; padding-bottom: 90px; }
     .page-heading { margin-bottom: 54px; }

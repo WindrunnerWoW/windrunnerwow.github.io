@@ -1,0 +1,60 @@
+name: Announce news on Discord
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/lib/content/news/*.md'
+  workflow_dispatch:
+    inputs:
+      files:
+        description: 'Space-separated news files to announce, e.g. src/lib/content/news/my-post.md'
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  announce:
+    runs-on: ubuntu-latest
+    env:
+      DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+      DISCORD_ROLE_ID: ${{ vars.DISCORD_ROLE_ID }}
+      PUBLIC_SITE_URL: ${{ vars.PUBLIC_SITE_URL }}
+      BASE_PATH: ${{ vars.BASE_PATH }}
+      BEFORE_SHA: ${{ github.event.before }}
+      AFTER_SHA: ${{ github.sha }}
+      MANUAL_FILES: ${{ inputs.files }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Find new news posts
+        run: |
+          if [ -n "$MANUAL_FILES" ]; then
+            printf '%s\n' $MANUAL_FILES > changed-posts.txt
+            cat changed-posts.txt
+            exit 0
+          fi
+
+          if [ -z "$BEFORE_SHA" ] || [ "$BEFORE_SHA" = "0000000000000000000000000000000000000000" ]; then
+            echo "No previous commit to compare against; nothing to announce."
+            : > changed-posts.txt
+            exit 0
+          fi
+
+          git diff --name-only --diff-filter=A "$BEFORE_SHA" "$AFTER_SHA" -- 'src/lib/content/news/*.md' > changed-posts.txt
+          cat changed-posts.txt
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Post to Discord
+        if: env.DISCORD_WEBHOOK_URL != ''
+        run: node scripts/notify-discord.mjs changed-posts.txt
+
+      - name: Warn about missing webhook
+        if: env.DISCORD_WEBHOOK_URL == ''
+        run: echo "::warning::DISCORD_WEBHOOK_URL secret is not set; skipping announcement."

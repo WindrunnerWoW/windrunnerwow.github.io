@@ -16,6 +16,7 @@ export type ChangelogEntry = {
   date: string;
   summary: string;
   image?: string;
+  position?: 'top' | 'center' | 'bottom';
   sections: ChangelogSection[];
 };
 
