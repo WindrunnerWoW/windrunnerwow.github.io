@@ -1,6 +1,7 @@
-@font-face{font-family:"Folkard";src:url("/art/shared/folkard.woff") format("woff");font-display:swap}
-@font-face{font-family:"Friz Quadrata";src:url("/art/shared/friz-quadrata.otf") format("opentype");font-display:swap}
-@font-face{font-family:"DINPro";src:url("/art/shared/din-pro.woff2") format("woff2");font-display:swap}
+@import "@fontsource/barlow-semi-condensed/latin-400.css";
+@import "@fontsource/barlow-semi-condensed/latin-600.css";
+@import "@fontsource/barlow-semi-condensed/latin-700.css";
+@import "@fontsource-variable/cinzel";
 
 :root{
   font-family:Inter,system-ui,sans-serif;
@@ -10,10 +11,10 @@
   --gold:#a78348;
   --paper:#ddd2bb;
   --muted:#91897c;
-  --font-display:"Folkard","WarcraftDisplay","Cinzel",Georgia,serif;
-  --font-heading:"Friz Quadrata","Cinzel",Georgia,serif;
+  --font-display:"Cinzel Variable","Cinzel",Georgia,serif;
+  --font-heading:"Cinzel Variable","Cinzel",Georgia,serif;
   --font-body:"Crimson Pro",Georgia,serif;
-  --font-ui:"DINPro",Inter,system-ui,sans-serif;
+  --font-ui:"Barlow Semi Condensed",Inter,system-ui,sans-serif;
 }
 *{box-sizing:border-box}html{scroll-behavior:auto}body{margin:0;background:#080a0b;color:#c9c0ad;overflow-x:hidden}html.nav-open,body.nav-open{overflow:hidden;overscroll-behavior:none;height:100%}button,input{font:inherit}
 h1,h2,h3,h4{font-family:var(--font-heading);font-weight:500;text-wrap:balance}

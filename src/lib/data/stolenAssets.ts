@@ -194,13 +194,6 @@ export const stolenAssets: StolenAsset[] = [
     usedOn: page("/roadmap", "Roadmap"),
   },
   {
-    title: "Runecrafting",
-    src: "/art/roadmap/runecrafting.webp",
-    by: "Blizzard",
-    source: "https://www.blizzard.com/en-us/",
-    usedOn: page("/roadmap", "Roadmap"),
-  },
-  {
     title: "Controller support",
     src: "/art/roadmap/controller_support.webp",
     source:
