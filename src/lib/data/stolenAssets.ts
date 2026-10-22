@@ -490,28 +490,7 @@ export const stolenAssets: StolenAsset[] = [
     source:
       "https://dribbble.com/shots/6175355-World-of-Warcraft-Vector-Class-Icons",
     usedOn: page("/talents", "Talents"),
-  },
-  {
-    title: "Release Picture 1",
-    src: "/art/news/release_1.webp",
-    usedOn: page("/news", "News"),
-    by: "Jason Kang & Jomaro Kindred",
-    source: "https://www.artstation.com/artwork/04mo4",
-  },
-  {
-    title: "Release Picture 2",
-    src: "/art/news/release_2.webp",
-    usedOn: page("/news", "News"),
-    by: "Eric Braddock",
-    source: "https://www.artstation.com/artwork/3R1QJ",
-  },
-  {
-    title: "Naxxramas Artwork",
-    src: "/art/news/setupGuide.webp",
-    by: "Blizzard",
-    source: "https://www.blizzard.com/en-us/",
-    usedOn: page("/news", "News"),
-  },
+  }
 ];
 
 export function creatorName(asset: StolenAsset) {
