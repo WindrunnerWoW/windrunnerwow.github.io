@@ -410,7 +410,15 @@ export const stolenAssets: StolenAsset[] = [
     title: "Troll in Lapidis",
     src: "/art/factions/troll-lapidis.webp",
     usedOn: page("/new-factions-and-quests", "Factions"),
-  }
+  },
+  {
+    title: "Hearthstone Header",
+    src: "/art/features/hearthstone.webp",
+    usedOn: page("/news", "News"),
+    by: "Laurel D. Austin / Blizzard",
+    source:
+      "https://blizzard.gamespress.com/de/Kit/Details/BlizzCon-2014-Goblins-vs-Gnomes-press-kit",
+  },
 ];
 
 export function creatorName(asset: StolenAsset) {

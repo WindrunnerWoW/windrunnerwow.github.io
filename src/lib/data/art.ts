@@ -39,5 +39,8 @@ export const art = {
   world: '/art/features/world.webp',
   landscape: '/art/features/landscape.webp',
   mountSpeed: '/art/features/mount-speed.webp',
-  guildBanks: '/art/features/guild-banks.webp'
+  guildBanks: '/art/features/guild-banks.webp',
+  voiceover: '/art/news/vo_addon.webp',
+  controller: '/art/features/controller_3.webp',
+  hearthstone: '/art/features/hearthstone.webp',
 } as const;

@@ -305,7 +305,15 @@ export const featureCategories: FeatureCategory[] = [
         eyebrow: 'ADDON',
         title: 'Windrunner Voiceover',
         summary: 'Quest text read aloud — fixed multi-giver voices, restyled UI, full Turtle WoW data via the Launcher.',
-        image: '/art/news/vo_addon.webp'
+        image: art.voiceover
+      },
+      {
+        slug: 'controller',
+        href: '/controller',
+        eyebrow: 'ADDON',
+        title: 'Controller Support',
+        summary: 'Play with your controller and enjoy the world, laid back on the couch.',
+        image: art.controller
       }
     ]
   }

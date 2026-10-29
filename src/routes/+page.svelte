@@ -231,14 +231,14 @@
     {
       eyebrow: "PROFESSION",
       title: "Material Storage",
-      wide: true,
+      wide: false,
       text: "Keep nearly unlimited crafting materials out of your bags from any banker.",
       href: "/material-storage",
       image: "/art/material-storage/hero.webp",
       position: "center",
     },
     {
-      eyebrow: "Interface",
+      eyebrow: "INTERFACE",
       title: "Voiceover",
       wide: false,
       text: "Let the game read the quest texts out loud for a more immersive experience",
@@ -254,6 +254,14 @@
       href: "/companion-guild",
       image: "/art/roadmap/companion_guild.webp",
       position: "70% 55%",
+    },
+    {
+      eyebrow: "INTERFACE",
+      title: "Controller Support",
+      wide: false,
+      text: "Enjoy the game using a controller. No setup, no hassle.",
+      href: "/controller",
+      image: "/art/features/controller_4.webp"
     },
   ];
 </script>
