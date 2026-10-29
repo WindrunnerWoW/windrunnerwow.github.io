@@ -9,6 +9,8 @@
 //   DISCORD_ROLE_ID      Optional role ID to ping with each announcement
 //   PUBLIC_SITE_URL      Canonical origin; defaults to the live site
 //   BASE_PATH            Subpath the site is served from, if any
+//   IMAGE_WAIT_MS        How long to wait for a cover image to be downloadable
+//                        before announcing (default 300000; 0 disables waiting)
 
 import { readFileSync } from 'node:fs';
 import { basename } from 'node:path';
@@ -18,6 +20,11 @@ const MAX_TITLE = 256;
 const MAX_DESCRIPTION = 4096;
 const MAX_AUTHOR = 256;
 const MAX_FOOTER = 2048;
+const IMAGE_POLL_MS = 5000;
+
+const parsedImageWait = Number.parseInt(process.env.IMAGE_WAIT_MS ?? '', 10);
+const IMAGE_WAIT_MS =
+  Number.isFinite(parsedImageWait) && parsedImageWait >= 0 ? parsedImageWait : 300000;
 
 const args = process.argv.slice(2);
 const dryRun = process.env.DRY_RUN === '1' || args.includes('--dry-run');
@@ -93,6 +100,31 @@ function readPostList(files) {
   return [...paths];
 }
 
+// Discord downloads an embed image once, when the message is created, and never
+// retries. The announcement workflow runs on the same push that triggers the
+// Pages deploy, so a newly added cover image is still 404 while the site builds.
+// Wait for the file to be served before posting so the embed keeps its image.
+async function waitForImage(url) {
+  const deadline = Date.now() + IMAGE_WAIT_MS;
+
+  for (;;) {
+    try {
+      const response = await fetch(url, { redirect: 'follow' });
+      const type = response.headers.get('content-type') ?? '';
+      if (response.ok && type.startsWith('image/')) {
+        await response.body?.cancel();
+        return true;
+      }
+      await response.body?.cancel();
+    } catch {
+      // Network hiccup or DNS not settled yet; retry until the deadline.
+    }
+
+    if (Date.now() >= deadline) return false;
+    await new Promise((resolve) => setTimeout(resolve, IMAGE_POLL_MS));
+  }
+}
+
 function buildEmbed(file) {
   const slug = basename(file, '.md');
   if (slug.startsWith('_')) return null;
@@ -165,6 +197,16 @@ for (const file of files) {
   if (dryRun) {
     console.log(JSON.stringify({ content: roleId ? `<@&${roleId}>` : undefined, embeds: [embed] }, null, 2));
   } else {
+    if (embed.image?.url) {
+      console.log(`Waiting for ${embed.image.url} to be available…`);
+      const ready = await waitForImage(embed.image.url);
+      if (!ready) {
+        console.warn(
+          `::warning::${embed.image.url} is still not downloadable after ${IMAGE_WAIT_MS} ms; announcing without the cover image.`
+        );
+      }
+    }
+
     await postToDiscord(embed);
     console.log(`Announced ${embed.url}`);
   }
