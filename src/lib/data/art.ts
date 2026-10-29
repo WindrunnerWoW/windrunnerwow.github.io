@@ -42,4 +42,5 @@ export const art = {
   guildBanks: '/art/features/guild-banks.webp',
   voiceover: '/art/news/vo_addon.webp',
   controller: '/art/features/controller_3.webp',
+  hearthstone: '/art/features/hearthstone.webp',
 } as const;
