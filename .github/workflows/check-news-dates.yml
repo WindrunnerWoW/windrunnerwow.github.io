@@ -1,0 +1,31 @@
+name: News dates
+
+on:
+  # Deliberately unfiltered: a required status check that never reports leaves
+  # pull requests stuck on "Expected - waiting for status to be reported".
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: check-news-dates-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  check:
+    name: news dates are not in the future
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # Checks every published post, so a future date cannot be hidden by
+      # touching an unrelated file in the same pull request.
+      - name: Check news dates
+        run: node scripts/check-news-dates.mjs src/lib/content/news
