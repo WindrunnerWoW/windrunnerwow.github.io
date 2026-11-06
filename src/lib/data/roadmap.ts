@@ -83,6 +83,15 @@ export const roadmap: RoadmapEntry[] = [
     ],
   },
   {
+    status: "now",
+    marker: "Work in Progress",
+    title: "User Interface Improvements",
+    when: "Ongoing",
+    summary:
+      "Improvements to the Interface. Optional, toggleable in the settings.",
+    images: [{ src: "/art/roadmap/ui_improvements.webp", alt: "UI" }],
+  },
+  {
     status: "completed",
     marker: "Released",
     title: "Crafting Orders",
@@ -181,7 +190,7 @@ export const roadmap: RoadmapEntry[] = [
   },
   {
     status: "completed",
-    marker: "Waiting for Release",
+    marker: "Released",
     title: "Hearthstone CCG",
     when: "1.19.0",
     summary:
@@ -204,15 +213,42 @@ export const roadmap: RoadmapEntry[] = [
   },
   {
     status: "planned",
-    marker: "Soon",
+    marker: "Planned",
+    title: "Companion Overhaul",
+    when: "1.19.1",
+    summary:
+      "Let us get rid of those useless bots. Let us create... new bots.",
+    images: [{ src: "/art/roadmap/hearthstone.webp", alt: "Hearthstone" }],
+  },
+  {
+    status: "planned",
+    marker: "Planned",
+    title: "Murloc Holmes in: The Bobby Files",
+    when: "1.19.2",
+    summary:
+      "Let us get rid of those useless bots. Let us create... new bots.",
+    images: [{ src: "/art/roadmap/hearthstone.webp", alt: "Hearthstone" }],
+  },
+  {
+    status: "planned",
+    marker: "Planned",
     title: "Linux Support",
-    when: "Soon",
+    when: "1.19.2",
     summary: "Launcher and auto setup for Linux.",
     images: [{ src: "/art/roadmap/linux.webp", alt: "Linux Support" }],
     items: [
       "Test all functionality in 3 distros (Arch, Fedora, NixOS).",
       "Fix bugs",
     ],
+  },
+  {
+    status: "horizon",
+    marker: "Horizon",
+    title: "Living Cities",
+    when: "1.19.3",
+    summary:
+      "Cities without players are boring. Let's make them more interesting. With the Living Cities, cities are denser populated with citizens, traders and more.",
+    images: [{ src: "/art/roadmap/living_cities.webp", alt: "Living Cities" }],
   },
   {
     status: "horizon",
@@ -258,15 +294,6 @@ export const roadmap: RoadmapEntry[] = [
   {
     status: "horizon",
     marker: "Horizon",
-    title: "User Interface Improvements",
-    when: "TBD",
-    summary:
-      "Improvements to the Interface. Optional, toggleable in the settings.",
-    images: [{ src: "/art/roadmap/ui_improvements.webp", alt: "UI" }],
-  },
-  {
-    status: "horizon",
-    marker: "Horizon",
     title: "New Raid: Emerald Nightmare",
     when: "TBD",
     summary:
@@ -274,15 +301,6 @@ export const roadmap: RoadmapEntry[] = [
     images: [
       { src: "/art/roadmap/emerald_nightmare.webp", alt: "Emerald Nightmare" },
     ],
-  },
-  {
-    status: "horizon",
-    marker: "Horizon",
-    title: "Living Cities",
-    when: "TBD",
-    summary:
-      "Cities without players are boring. Let's make them more interesting. With the Living Cities, cities are denser populated with citizens, traders and more.",
-    images: [{ src: "/art/roadmap/living_cities.webp", alt: "Living Cities" }],
   },
   {
     status: "horizon",

@@ -1,7 +1,7 @@
 <script lang="ts">
   import StoryPage from '$lib/components/StoryPage.svelte';
 
-  const improvements: { title: string; copy: string; src: string; alt: string; href?: string }[] = [
+  const improvements: { title: string; copy: string; src?: string; alt?: string; href?: string }[] = [
     {
       title: 'Improved Profession UI',
       copy: 'The profession UI is now larger, with extra options such as Have materials and Provides skill-up. A search bar along the bottom of the recipe list saves you from endless scrolling.',
@@ -62,6 +62,38 @@
       src: '/art/news/vo_addon.webp',
       alt: 'Windrunner Voiceover addon showing voiced quest text in-game',
       href: '/voiceover'
+    },
+    {
+      title: 'World Event Calendar',
+      copy: 'A calendar for all world events now sits by your minimap, so you can see what is happening across Azeroth at a glance.',
+      src: '/art/client-ui/calendar.webp',
+      alt: 'In-game world event calendar showing holidays and events for November 2026',
+      href: '/seasonal-events'
+    },
+    {
+      title: 'Shaman Totem Bar',
+      copy: 'Shamans now have a built-in totem bar, based on Call of Elements and reworked for Windrunner. Keep your active totems in view without installing an add-on.',
+      src: '/art/client-ui/totem-bar.webp',
+      alt: 'Shaman totem bar showing active totems above the action bars',
+      href: '/features/classes/shaman'
+    },
+    {
+      title: 'Sell Junk Button',
+      copy: 'A Sell Junk button can be enabled in the Interface settings. Press it to sell every junk item in your bags in one go.',
+      src: '/art/client-ui/sell-junk.webp',
+      alt: 'Backpack filled with junk items before using the Sell Junk button'
+    },
+    {
+      title: 'Shift to Compare Gear',
+      copy: 'Hold Shift over an item in your bags to compare it with what you have equipped in that slot.',
+      src: '/art/client-ui/item-compare.webp',
+      alt: 'Item tooltip comparing bag gear with the currently equipped item while holding Shift'
+    },
+    {
+      title: 'Alt to Equip Gear',
+      copy: 'Hold Alt on any slot in your character sheet to see what you can equip there. Click an item to equip it without searching through your bags.',
+      src: '/art/client-ui/quick-equip.webp',
+      alt: 'Character sheet showing equippable items for a slot while holding Alt'
     }
   ];
 
@@ -99,9 +131,21 @@
   <section class="list">
     {#each improvements as item, i}
       <article class="row" class:flip={i % 2 === 1}>
-        <button type="button" class="shot" on:click={() => (lightbox = { src: item.src, alt: item.alt })}>
-          <img src={item.src} alt={item.alt} />
-        </button>
+        {#if item.src}
+          {@const src = item.src}
+          {@const alt = item.alt ?? item.title}
+          <button type="button" class="shot" on:click={() => (lightbox = { src, alt })}>
+            <img {src} {alt} />
+          </button>
+        {:else}
+          <div class="shot placeholder" aria-hidden="true">
+            <div class="placeholder-inner">
+              <span>Screenshot</span>
+              <strong>{item.title}</strong>
+              <small>coming soon</small>
+            </div>
+          </div>
+        {/if}
         <div class="copy">
           <div class="kicker">{i + 1 < 10 ? `0${i + 1}` : `${i + 1}`}</div>
           <h3>{item.title}</h3>
@@ -144,6 +188,9 @@
     order: 2;
   }
   .shot {
+    justify-self: center;
+    width: fit-content;
+    max-width: 100%;
     margin: 0;
     padding: 8px;
     border: 1px solid #3a3124;
@@ -153,16 +200,54 @@
   }
   .shot img {
     display: block;
-    width: 100%;
+    width: auto;
     height: auto;
-    max-height: 420px;
-    object-fit: cover;
-    object-position: top;
+    min-width: min(100%, 360px);
+    max-width: 100%;
+    max-height: 520px;
+    object-fit: contain;
+    object-position: center;
     transition: 0.35s;
   }
   .shot:hover img {
     transform: scale(1.02);
     filter: brightness(1.08);
+  }
+  .shot.placeholder {
+    width: 100%;
+  }
+  .placeholder {
+    cursor: default;
+  }
+  .placeholder-inner {
+    display: grid;
+    place-content: center;
+    gap: 10px;
+    aspect-ratio: 16 / 10;
+    min-height: 240px;
+    padding: 28px;
+    text-align: center;
+    background:
+      radial-gradient(circle at 50% 35%, rgba(167, 131, 72, 0.14), transparent 55%),
+      linear-gradient(145deg, #12100c, #0b0d0e);
+  }
+  .placeholder-inner span,
+  .placeholder-inner small {
+    color: #a78348;
+    font: 10px / 1 var(--font-ui);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .placeholder-inner small {
+    color: #7d7568;
+  }
+  .placeholder-inner strong {
+    color: #d9cdb5;
+    font-size: clamp(20px, 2.4vw, 30px);
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    line-height: 1.1;
+    text-transform: uppercase;
   }
   .copy h3 {
     margin: 10px 0 16px;
@@ -221,6 +306,11 @@
     }
     .shot img {
       max-height: 280px;
+      min-width: 0;
+    }
+    .placeholder-inner {
+      min-height: 200px;
+      aspect-ratio: auto;
     }
   }
 </style>

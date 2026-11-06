@@ -46,6 +46,10 @@ Day-to-day content lives in a few files:
 
 Step-by-step notes for news, changelog, and roadmap entries are in [`howTo.md`](howTo.md).
 
+News dates are validated in CI: the `News dates` workflow fails a pull request
+when a published article's `date` is missing, malformed, or later than today
+(UTC). Run the same check locally with `node scripts/check-news-dates.mjs`.
+
 ## Discord news announcements
 
 The site publishes news as RSS at `/rss.xml`. To announce new posts in Discord, create a webhook in the target channel (Channel settings → Integrations → Webhooks), then add these to the repository:
@@ -56,6 +60,8 @@ The site publishes news as RSS at `/rss.xml`. To announce new posts in Discord, 
 | `DISCORD_ROLE_ID` | Actions variable (optional) | Role pinged with each announcement, e.g. `123456789012345678` |
 
 `.github/workflows/announce-news.yml` runs on every push to `main` and posts one embed per newly added file in `src/lib/content/news/` (title, summary, cover image, link, author, category, date). Editing an existing post does not re-announce it. Use the workflow's manual **Run workflow** button with a space-separated file list to re-send a specific post.
+
+Discord fetches an embed image once and never retries it, while the Pages deploy for the same push usually needs a few minutes. Before posting, the script therefore polls the cover image URL until it is served as an image (up to `IMAGE_WAIT_MS`, default 300000 ms). Set `IMAGE_WAIT_MS=0` to disable the wait. If the image never becomes available, the post is still announced with a workflow warning.
 
 Preview the payload locally without posting:
 

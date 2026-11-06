@@ -262,6 +262,14 @@ export const featureCategories: FeatureCategory[] = [
         title: 'Arena & Battlegrounds',
         summary: 'Faction conflicts and arenas for players who want glory beyond the PvE journey.',
         image: art.arena
+      },
+      {
+        slug: 'hearthstone',
+        href: '/hearthstone',
+        eyebrow: 'Hearthstone',
+        title: 'Hearthstone',
+        summary: 'Play Hearthstone and win against the best players of Azeroth, collect cards and have fun creating decks!',
+        image: art.hearthstone
       }
     ]
   },

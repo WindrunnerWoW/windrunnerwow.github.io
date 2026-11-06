@@ -6,13 +6,13 @@
     "changelog": "What changed for players in this release.",
     "bootstrap": {
       "displayName": "Vanilla 1.18.1 client",
-      "url": "https://drive.google.com/file/d/1kAfZtfaeyM1xEDEKcdVw-EH9SJs1Bepg/view?usp=sharing",
+      "url": "https://ts.fuckingfast.net/d/gz45te1wt9pb?v=1qmhK40UoYoNaqA1v4Jw6qYU7uzwPZjFNuXXVxpzV2zLjSOvDpGd-FIF1qyCtXtJEoVGzb1YfBtKGoLIE2nN_dEvcSih0Fj1dNHywn7PYI1BFySOCvOipPeOlMMnJYMU842-pPxsz2dOEmtsxoWgJC4txGaKYlpnATV7V6FTilS09jL7c3l-KCUVsEb74e4hotlgKMU",
       "sha256": "A70CFD948593188837A9EEA46124DD0FEF4E76D37F56CED7135E9B466CF32120"
     },
     "maps": {
       "displayName": "Map data (dbc/maps/vmaps/mmaps)",
-      "url": "https://drive.google.com/file/d/1HGTk5V5-E2teK7IGegt5pIyv7fAz1Zuy/view?usp=sharing",
-      "sha256": "B1580394DBCA7E7C2C876307A06B5EC6AD619D2CD3A80505EFCB4505429CDC89"
+      "url": "https://ts.fuckingfast.net/d/96qhzy0dq7u8?v=7adrcLcxvjGlEbTejXab7mdYKna7afOLC-CszuDYthMjMITIxEFtzMo5LLJ9Vo0AbjgUyJ5GpR2Cly19pBsgrWVt7DRTQODOUcg7vTFllaYau8AtnUtD_l2RgOx7i-i9Ku7z",
+      "sha256": "71d85b04c51268d9bdf81526e92b4a3a6b89c8fdd6d597b55e1e45dbc07832c2"
     },
     "assets": [
       {
@@ -66,6 +66,18 @@
         "assetContains": "nampower*.zip",
         "dependencies": ["vanillafixes"],
         "dllsTxtAdd": ["nampower.dll"]
+      },
+      {
+        "id": "windrunner_controller",
+        "displayName": "Windrunner Controller Support",
+        "version": "O.1.0",
+        "kind": "ZipRoot",
+        "category": "Interface",
+        "description": "Controller-first interface for the 1.12 client",
+        "gitHubRepo": "WindrunnerWoW/windrunner-controller",
+        "assetContains": "WindrunnerController-*.zip",
+        "dependencies": ["vanillafixes"],
+        "dllsTxtAdd": ["WindrunnerController.dll"]
       },
       {
         "id": "unitxp",
