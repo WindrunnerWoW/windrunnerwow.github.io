@@ -1,5 +1,5 @@
-// Checks every Google Drive link in the client manifest and warns in a Discord
-// channel when one of them can no longer be downloaded anonymously.
+// Checks every download link in the client manifest and warns in a Discord
+// channel when one of them can no longer be fetched anonymously.
 //
 // Usage:
 //   node scripts/check-client-files.mjs
@@ -24,7 +24,7 @@ import { readFileSync } from 'node:fs';
 
 const EMBED_COLOR = 0xc9b06a;
 const BROKEN_COLOR = 0xc0392b;
-const DOWNLOAD_ENDPOINT = 'https://drive.google.com/uc?export=download';
+const DRIVE_DOWNLOAD_ENDPOINT = 'https://drive.google.com/uc?export=download';
 const READ_LIMIT = 64 * 1024;
 const MAX_FIELD_NAME = 256;
 const MAX_FIELD_VALUE = 1024;
@@ -32,11 +32,12 @@ const MAX_FIELDS = 25;
 
 const STATE_LABELS = {
   missing: '404 Not Found - the file was deleted or the link no longer resolves',
-  denied: '403 Forbidden - the file is restricted, so anonymous downloads are refused',
+  expired: '410 Gone - the signed link has expired, so a fresh one has to be generated',
+  denied: '403 Forbidden - the link is refused, so the file is restricted or the signature is wrong',
   error: 'request failed'
 };
 
-// 404 and 403 are definitive answers from Drive; everything below is worth another try.
+// 404, 403 and 410 are definitive answers from the host; everything below is worth another try.
 const RETRY_STATUSES = new Set([429, 500, 502, 503, 504]);
 
 const args = process.argv.slice(2);
@@ -88,9 +89,9 @@ function decodeEntities(value) {
     .replace(/&amp;/g, '&');
 }
 
-// Returns { kind: 'file', fileId } for a downloadable Drive file, { kind: 'folder' }
-// for a folder link, and null for anything else.
-function driveTarget(raw) {
+// Returns { kind: 'file', fileId, probeUrl } for a link the launcher downloads,
+// { kind: 'folder' } for a Drive folder link, and null for anything else.
+function downloadTarget(raw) {
   let url;
   try {
     url = new URL(raw);
@@ -98,21 +99,34 @@ function driveTarget(raw) {
     return null;
   }
 
+  if (url.protocol !== 'https:' && url.protocol !== 'http:') return null;
+
   const host = url.hostname.replace(/^www\./, '');
-  if (!['drive.google.com', 'docs.google.com', 'drive.usercontent.google.com'].includes(host)) return null;
 
-  if (url.pathname.includes('/folders/')) return { kind: 'folder' };
+  // A Drive view link is not downloadable as it stands, so the launcher swaps it
+  // for the direct download endpoint before it fetches anything.
+  if (['drive.google.com', 'docs.google.com', 'drive.usercontent.google.com'].includes(host)) {
+    if (url.pathname.includes('/folders/')) return { kind: 'folder' };
 
-  const fromPath = url.pathname.match(/\/d\/([A-Za-z0-9_-]{10,})/);
-  if (fromPath) return { kind: 'file', fileId: fromPath[1] };
+    const fromPath = url.pathname.match(/\/d\/([A-Za-z0-9_-]{10,})/);
+    const fromQuery = url.searchParams.get('id');
+    const fileId = fromPath?.[1] ?? (fromQuery && /^[A-Za-z0-9_-]{10,}$/.test(fromQuery) ? fromQuery : null);
+    if (!fileId) return null;
 
-  const fromQuery = url.searchParams.get('id');
-  if (fromQuery && /^[A-Za-z0-9_-]{10,}$/.test(fromQuery)) return { kind: 'file', fileId: fromQuery };
+    return {
+      kind: 'file',
+      fileId,
+      probeUrl: `${DRIVE_DOWNLOAD_ENDPOINT}&id=${encodeURIComponent(fileId)}`
+    };
+  }
 
-  return null;
+  // Every other host is fetched exactly as the manifest declares it, signed
+  // query string and all.
+  const fileId = url.pathname.match(/\/d\/([A-Za-z0-9_-]{6,})/)?.[1] ?? null;
+  return { kind: 'file', fileId, probeUrl: url.href };
 }
 
-// Walks the manifest and picks up every Drive link, remembering the surrounding
+// Walks the manifest and picks up every download link, remembering the surrounding
 // displayName/sha256 so a warning can name the file the way the launcher does.
 function collectTargets(node, path, context, targets = []) {
   if (Array.isArray(node)) {
@@ -131,15 +145,15 @@ function collectTargets(node, path, context, targets = []) {
 
   if (typeof node !== 'string') return targets;
 
-  const drive = driveTarget(node);
-  if (!drive) return targets;
+  const target = downloadTarget(node);
+  if (!target) return targets;
 
   targets.push({
     path,
     url: node,
     label: context.label ?? path,
     sha256: context.sha256 ?? null,
-    ...drive
+    ...target
   });
   return targets;
 }
@@ -176,6 +190,41 @@ function parseInterstitial(html) {
   };
 }
 
+function parseFileName(header) {
+  if (!header) return null;
+
+  const encoded = header.match(/filename\*=UTF-8''([^;]+)/i);
+  if (encoded) {
+    try {
+      return decodeURIComponent(encoded[1].trim());
+    } catch {
+      return encoded[1].trim();
+    }
+  }
+
+  const plain = header.match(/filename="?([^";]+)"?/i);
+  return plain ? plain[1].trim() : null;
+}
+
+// A ranged answer carries the size of the whole file in Content-Range: "bytes 0-0/1234567890".
+function parseContentRange(header) {
+  const match = header?.match(/\/(\d+)\s*$/);
+  return match ? formatBytes(Number(match[1])) : null;
+}
+
+function formatBytes(bytes) {
+  const units = ['B', 'KB', 'MB', 'GB', 'TB'];
+  let size = bytes;
+  let unit = 0;
+
+  while (size >= 1024 && unit < units.length - 1) {
+    size /= 1024;
+    unit += 1;
+  }
+
+  return `${unit === 0 || size >= 10 ? Math.round(size) : size.toFixed(1)} ${units[unit]}`;
+}
+
 async function probe(target) {
   let result;
 
@@ -195,22 +244,31 @@ async function probe(target) {
 async function probeOnce(target) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
-  const url = `${DOWNLOAD_ENDPOINT}&id=${encodeURIComponent(target.fileId)}`;
 
   try {
-    const response = await fetch(url, {
+    const response = await fetch(target.probeUrl, {
       redirect: 'follow',
       signal: controller.signal,
-      headers: { 'user-agent': 'windrunner-client-check/1.0' }
+      headers: {
+        'user-agent': 'windrunner-client-check/1.0',
+        // A single byte proves the file is served; without it a healthy link
+        // would pull the whole multi-gigabyte archive down.
+        range: 'bytes=0-0'
+      }
     });
 
     const contentType = response.headers.get('content-type') ?? '';
-    const body = response.ok ? await readPrefix(response, READ_LIMIT) : '';
+    const body = await readPrefix(response, READ_LIMIT);
     const host = safeHost(response.url);
-    const meta = parseInterstitial(body) ?? {};
+    const interstitial = parseInterstitial(body);
+    const meta = {
+      fileName: parseFileName(response.headers.get('content-disposition')) ?? interstitial?.fileName ?? null,
+      fileSize: parseContentRange(response.headers.get('content-range')) ?? interstitial?.fileSize ?? null
+    };
 
     if (response.status === 404) return { state: 'missing', status: response.status, ...meta };
-    if (response.status === 403 || host === 'accounts.google.com') {
+    if (response.status === 410) return { state: 'expired', status: response.status, ...meta };
+    if (response.status === 401 || response.status === 403 || host === 'accounts.google.com') {
       return { state: 'denied', status: response.status, ...meta };
     }
     if (!response.ok) {
@@ -225,7 +283,7 @@ async function probeOnce(target) {
     return {
       state: 'ok',
       status: response.status,
-      detail: meta.fileName ? "behind Google's virus-scan confirmation page" : contentType || 'direct download',
+      detail: interstitial ? "behind Google's virus-scan confirmation page" : contentType || 'direct download',
       ...meta
     };
   } catch (error) {
@@ -242,7 +300,8 @@ async function probeOnce(target) {
 function annotate(result) {
   if (process.env.GITHUB_ACTIONS !== 'true') return;
 
-  const line = manifestLines.findIndex((text) => text.includes(result.fileId)) + 1;
+  const needle = result.fileId ?? result.url;
+  const line = manifestLines.findIndex((text) => text.includes(needle)) + 1;
   const location = line > 0 ? `file=${manifestPath},line=${line},` : '';
   const title = escapeAnnotation(result.path).replace(/,/g, '%2C').replace(/:/g, '%3A');
   console.log(`::error ${location}title=Broken download link (${title})::${escapeAnnotation(describe(result))}`);
@@ -263,20 +322,19 @@ function describe(result) {
 function manifestFooter(manifest, results) {
   const version = [manifest?.product, manifest?.version, manifest?.channel].filter(Boolean).join(' ');
   const reachable = results.filter((result) => result.state === 'ok').length;
-  return truncate([version || 'client.json', `${reachable}/${results.length} reachable`, 'Google Drive check'].join(' • '), 2048);
+  return truncate([version || 'client.json', `${reachable}/${results.length} reachable`, 'download link check'].join(' • '), 2048);
 }
 
 function failureField(result) {
   const lines = [
     `**Status:** ${describe(result)}`,
-    `**Manifest path:** \`${result.path}\``,
-    `**File ID:** \`${result.fileId}\``
+    `**Manifest path:** \`${result.path}\``
   ];
 
+  if (result.fileId) lines.push(`**File ID:** \`${result.fileId}\``);
   if (result.sha256) lines.push(`**Manifest sha256:** \`${result.sha256}\``);
 
-  const view = `https://drive.google.com/file/d/${result.fileId}/view`;
-  lines.push(`[Open in Google Drive](${view})`);
+  lines.push(`[Open the download link](${result.url})`);
 
   return {
     name: truncate(`❌ ${result.label}`, MAX_FIELD_NAME),
@@ -298,8 +356,8 @@ function buildEmbed(manifest, results, broken) {
 
   if (hasBroken) {
     embed.description =
-      'The launcher can no longer fetch these files from Google Drive. Re-upload the file, share it with ' +
-      '"Anyone with the link", then update `client.json` - the declared `sha256` changes with a new upload.';
+      'The launcher can no longer fetch these files. Generate a fresh download link, then update ' +
+      '`client.json` - the declared `sha256` changes with a new upload.';
     embed.fields = broken.slice(0, MAX_FIELDS - (broken.length > MAX_FIELDS ? 1 : 0)).map(failureField);
     if (broken.length > MAX_FIELDS) {
       embed.fields.push({
@@ -311,7 +369,7 @@ function buildEmbed(manifest, results, broken) {
     return embed;
   }
 
-  embed.description = 'Every download listed in `client.json` answers on the public Drive link.';
+  embed.description = 'Every download listed in `client.json` answers on its public link.';
   embed.fields = results.slice(0, MAX_FIELDS - (results.length > MAX_FIELDS ? 1 : 0)).map((result) => ({
     name: truncate(result.label, MAX_FIELD_NAME),
     value: truncate(`\`${result.path}\` — ${describe(result)}`, MAX_FIELD_VALUE),
@@ -372,20 +430,20 @@ if (folders.length > 0) {
 }
 
 if (files.length === 0) {
-  console.error(`No Google Drive file links found in ${manifestPath}.`);
+  console.error(`No download links found in ${manifestPath}.`);
   process.exit(2);
 }
 
-console.log(`Checking ${files.length} Drive link(s) from ${manifestPath} (${manifest.product ?? 'unknown product'} ${manifest.version ?? ''}).`.trim());
+console.log(`Checking ${files.length} download link(s) from ${manifestPath} (${manifest.product ?? 'unknown product'} ${manifest.version ?? ''}).`.trim());
 
-// One request per unique file ID; a link repeated under several manifest paths
+// One request per unique URL; a link repeated under several manifest paths
 // still gets its own line so the warning names every place that needs fixing.
 const cache = new Map();
 const results = [];
 
 for (const target of files) {
-  if (!cache.has(target.fileId)) cache.set(target.fileId, probe(target));
-  results.push({ ...target, ...(await cache.get(target.fileId)) });
+  if (!cache.has(target.probeUrl)) cache.set(target.probeUrl, probe(target));
+  results.push({ ...target, ...(await cache.get(target.probeUrl)) });
 }
 
 for (const result of results) {

@@ -256,6 +256,15 @@
       position: "70% 55%",
     },
     {
+      eyebrow: "SYSTEMS",
+      title: "Hearthstone",
+      wide: true,
+      text: "Play Hearthstone, collect card and defeat your opponents.",
+      href: "/hearthstone",
+      image: "/art/news/release_hs.webp",
+      position: "70% 25%",
+    },
+    {
       eyebrow: "INTERFACE",
       title: "Controller Support",
       wide: false,

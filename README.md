@@ -46,6 +46,10 @@ Day-to-day content lives in a few files:
 
 Step-by-step notes for news, changelog, and roadmap entries are in [`howTo.md`](howTo.md).
 
+News dates are validated in CI: the `News dates` workflow fails a pull request
+when a published article's `date` is missing, malformed, or later than today
+(UTC). Run the same check locally with `node scripts/check-news-dates.mjs`.
+
 ## Discord news announcements
 
 The site publishes news as RSS at `/rss.xml`. To announce new posts in Discord, create a webhook in the target channel (Channel settings → Integrations → Webhooks), then add these to the repository:
@@ -56,6 +60,8 @@ The site publishes news as RSS at `/rss.xml`. To announce new posts in Discord, 
 | `DISCORD_ROLE_ID` | Actions variable (optional) | Role pinged with each announcement, e.g. `123456789012345678` |
 
 `.github/workflows/announce-news.yml` runs on every push to `main` and posts one embed per newly added file in `src/lib/content/news/` (title, summary, cover image, link, author, category, date). Editing an existing post does not re-announce it. Use the workflow's manual **Run workflow** button with a space-separated file list to re-send a specific post.
+
+Discord fetches an embed image once and never retries it, while the Pages deploy for the same push usually needs a few minutes. Before posting, the script therefore polls the cover image URL until it is served as an image (up to `IMAGE_WAIT_MS`, default 300000 ms). Set `IMAGE_WAIT_MS=0` to disable the wait. If the image never becomes available, the post is still announced with a workflow warning.
 
 Preview the payload locally without posting:
 
@@ -93,9 +99,9 @@ Then open the pull request and merge it. Leaving them in place is not harmful - 
 
 ## Client download link monitoring
 
-`client.json` points the launcher at the client archive and the map data, both hosted on Google Drive. Those links can quietly stop working - the file is deleted, moved, or unshared - and nothing notices until a player reports a broken download.
+`client.json` points the launcher at the client archive and the map data, both served from `ts.fuckingfast.net` as signed links (`/d/<id>?v=<token>`). Those links can quietly stop working - the file is deleted, the signature expires, or the host starts refusing anonymous requests - and nothing notices until a player reports a broken download.
 
-`scripts/check-client-files.mjs` walks the manifest for Drive links, requests each one the way the launcher would (`https://drive.google.com/uc?export=download&id=...`) and reports what came back: `404` means the file is gone, `403` or a sign-in redirect means it is restricted, and a transient error is retried `CHECK_ATTEMPTS` times before it counts as broken.
+`scripts/check-client-files.mjs` walks the manifest for download links and requests each one the way the launcher would, asking for a single byte (`Range: bytes=0-0`) so a healthy link never pulls the whole archive down. It reports what came back: `404` means the file is gone, `410` means the signed link expired and a fresh one has to be generated, `403` or a sign-in redirect means the file is restricted, and a transient error is retried `CHECK_ATTEMPTS` times before it counts as broken. Google Drive links are still understood - a `/file/d/<id>/view` link is rewritten to the direct download endpoint before it is probed.
 
 `.github/workflows/check-client-files.yml` runs it daily at 09:17 UTC, on every push that touches `client.json` or the script, on every pull request to `main`, and on demand:
 
