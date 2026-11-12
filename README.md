@@ -99,9 +99,9 @@ Then open the pull request and merge it. Leaving them in place is not harmful - 
 
 ## Client download link monitoring
 
-`client.json` points the launcher at the client archive and the map data, both hosted on Google Drive. Those links can quietly stop working - the file is deleted, moved, or unshared - and nothing notices until a player reports a broken download.
+`client.json` points the launcher at the client archive and the map data, both served from `ts.fuckingfast.net` as signed links (`/d/<id>?v=<token>`). Those links can quietly stop working - the file is deleted, the signature expires, or the host starts refusing anonymous requests - and nothing notices until a player reports a broken download.
 
-`scripts/check-client-files.mjs` walks the manifest for Drive links, requests each one the way the launcher would (`https://drive.google.com/uc?export=download&id=...`) and reports what came back: `404` means the file is gone, `403` or a sign-in redirect means it is restricted, and a transient error is retried `CHECK_ATTEMPTS` times before it counts as broken.
+`scripts/check-client-files.mjs` walks the manifest for download links and requests each one the way the launcher would, asking for a single byte (`Range: bytes=0-0`) so a healthy link never pulls the whole archive down. It reports what came back: `404` means the file is gone, `410` means the signed link expired and a fresh one has to be generated, `403` or a sign-in redirect means the file is restricted, and a transient error is retried `CHECK_ATTEMPTS` times before it counts as broken. Google Drive links are still understood - a `/file/d/<id>/view` link is rewritten to the direct download endpoint before it is probed.
 
 `.github/workflows/check-client-files.yml` runs it daily at 09:17 UTC, on every push that touches `client.json` or the script, on every pull request to `main`, and on demand:
 
