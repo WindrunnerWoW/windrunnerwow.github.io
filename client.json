@@ -6,13 +6,13 @@
     "changelog": "What changed for players in this release.",
     "bootstrap": {
       "displayName": "Vanilla 1.18.1 client",
-      "url": "https://ts.fuckingfast.net/d/gz45te1wt9pb?v=1qmhK40UoYoNaqA1v4Jw6qYU7uzwPZjFNuXXVxpzV2zLjSOvDpGd-FIF1qyCtXtJEoVGzb1YfBtKGoLIE2nN_dEvcSih0Fj1dNHywn7PYI1BFySOCvOipPeOlMMnJYMU842-pPxsz2dOEmtsxoWgJC4txGaKYlpnATV7V6FTilS09jL7c3l-KCUVsEb74e4hotlgKMU",
-      "sha256": "A70CFD948593188837A9EEA46124DD0FEF4E76D37F56CED7135E9B466CF32120"
+      "url": "https://ts.fuckingfast.net/d/kjtphrfhvb83?v=v0BmFdDzyjwHKJDv0KCnt3LaEMGkcgs1SmJafDd4oXq5JO_gOwtHDgjDA8WcEUA2_0nJ30S8y93_td6BvXKvhtfr1Dz5jA_9IADD0o2luzZZLWaVrY6qaInI8vpKRGr7P-pJDCAywhtoYps2SfyL1wc3dYNvcxCAkIer15OWY0QYQn5kCpa4yYAFuOZSrNB3x4EwJ90",
+      "sha256": "a70cfd948593188837a9eea46124dd0fef4e76d37f56ced7135e9b466cf32120"
     },
     "maps": {
       "displayName": "Map data (dbc/maps/vmaps/mmaps)",
-      "url": "https://ts.fuckingfast.net/d/96qhzy0dq7u8?v=7adrcLcxvjGlEbTejXab7mdYKna7afOLC-CszuDYthMjMITIxEFtzMo5LLJ9Vo0AbjgUyJ5GpR2Cly19pBsgrWVt7DRTQODOUcg7vTFllaYau8AtnUtD_l2RgOx7i-i9Ku7z",
-      "sha256": "71d85b04c51268d9bdf81526e92b4a3a6b89c8fdd6d597b55e1e45dbc07832c2"
+      "url": "https://ts.fuckingfast.net/d/2mzfkcnc5up3?v=KgINLesMuqdab-0csfrTKF82p2Mj7XDp4cxrnU3lgmNL8fTpa4dP7oYIuW4JXKiKWUWXD8cHh_UWx3Xep3siQLfsABZcBq6_vsM0UDpq39X-2V70Y-eZ1R9HL2zfKOWt0J2N",
+      "sha256": "1e5771eb2ec95da06c0838738cf7b8574df061147389138cc34782e7ed95c2f6"
     },
     "assets": [
       {
