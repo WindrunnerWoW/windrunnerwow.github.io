@@ -74,7 +74,7 @@
 <StoryPage
   title="BETA: Controller Support"
   eyebrow="ADDON"
-  intro="Windrunner Controller turns the game into a controller-first experience. Connect a controller and the interface appears; disconnect it and the normal UI comes back."
+  intro="Windrunner Controller turns the game into a controller-first experience. With the addon based on [pepordevs ControllerExperience](https://github.com/pepordev/ConsoleExperienceClassic) and a custom dll it allows you to connect a controller and the interface appears; disconnect it and the normal UI comes back."
   heroImage="/art/features/controller_2.webp"
   heroPosition="70% 45%"
   heroSize="cover"
