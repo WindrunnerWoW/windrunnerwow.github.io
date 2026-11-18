@@ -6,12 +6,12 @@
     "changelog": "What changed for players in this release.",
     "bootstrap": {
       "displayName": "Vanilla 1.18.1 client",
-      "url": "https://drive.google.com/file/d/1Il_--C5MMo_V5GbcDFfGAHaqrzF1DWdl/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1rq7KWDPXqBDDlSnnXLsP5DbT5uIktFPZ/view?usp=drive_link",
       "sha256": "a70cfd948593188837a9eea46124dd0fef4e76d37f56ced7135e9b466cf32120"
     },
     "maps": {
       "displayName": "Map data (dbc/maps/vmaps/mmaps)",
-      "url": "https://drive.google.com/file/d/1GLoJWWJEOZ0D5o8ybuOp04dCKATtul3s/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1Gj3z1L2P-6gDYS_qDqm0XtL4QrDOP4oI/view?usp=drive_link",
       "sha256": "1e5771eb2ec95da06c0838738cf7b8574df061147389138cc34782e7ed95c2f6"
     },
     "assets": [
