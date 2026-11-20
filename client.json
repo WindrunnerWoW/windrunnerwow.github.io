@@ -25,7 +25,9 @@
         "description": "Replaces the client's spin-wait timing loop, removes the mouse input lag and adds the DLL loader used by SuperWoW and nampower. Launching through VanillaFixes.exe is what makes dlls.txt work.",
         "gitHubRepo": "hannesmann/vanillafixes",
         "assetContains": "vanillafixes*.zip",
-        "conflicts": ["dxvk"]
+        "conflicts": [
+          "dxvk"
+        ]
       },
       {
         "id": "multimonitor",
@@ -37,8 +39,12 @@
         "description": "Makes the 1.12 client list the resolutions of one monitor, which is what fixes missing widescreen modes on multi-monitor setups. The preferred monitor index lives in VMMFix_preferred_monitor.txt. Loaded by VanillaFixes.",
         "gitHubRepo": "Mates1500/VanillaMultiMonitorFix",
         "assetContains": "release.zip",
-        "dependencies": ["vanillafixes"],
-        "dllsTxtAdd": ["VanillaMultiMonitorFix.dll"]
+        "dependencies": [
+          "vanillafixes"
+        ],
+        "dllsTxtAdd": [
+          "VanillaMultiMonitorFix.dll"
+        ]
       },
       {
         "id": "superwow",
@@ -51,8 +57,12 @@
         "description": "Extends the 1.12 client with GUID-aware Lua APIs, camera and nameplate hooks and the events many modern vanilla addons expect. Injected by VanillaFixes through dlls.txt.",
         "gitHubRepo": "balakethelock/SuperWoW",
         "assetContains": "SuperWoW*.zip",
-        "dependencies": ["vanillafixes"],
-        "dllsTxtAdd": ["SuperWoWhook.dll"]
+        "dependencies": [
+          "vanillafixes"
+        ],
+        "dllsTxtAdd": [
+          "SuperWoWhook.dll"
+        ]
       },
       {
         "id": "nampower",
@@ -64,8 +74,12 @@
         "description": "Queues the next spell cast slightly before the current one finishes, which removes most of the dead time high-latency players lose between casts.",
         "gitHubRepo": "namreeb/nampower",
         "assetContains": "nampower*.zip",
-        "dependencies": ["vanillafixes"],
-        "dllsTxtAdd": ["nampower.dll"]
+        "dependencies": [
+          "vanillafixes"
+        ],
+        "dllsTxtAdd": [
+          "nampower.dll"
+        ]
       },
       {
         "id": "windrunner_controller",
@@ -76,8 +90,12 @@
         "description": "Controller-first interface for the 1.12 client",
         "gitHubRepo": "WindrunnerWoW/windrunner-controller",
         "assetContains": "WindrunnerController-*.zip",
-        "dependencies": ["vanillafixes"],
-        "dllsTxtAdd": ["WindrunnerController.dll"]
+        "dependencies": [
+          "vanillafixes"
+        ],
+        "dllsTxtAdd": [
+          "WindrunnerController.dll"
+        ]
       },
       {
         "id": "unitxp",
@@ -89,17 +107,29 @@
         "description": "Adds line-of-sight, real distance and other unit queries to the Lua API, plus optional interface fixes used by several community addons.",
         "gitHubRepo": "codeberg.org/konaka/UnitXP_SP3",
         "assetContains": "UnitXP_SP3*.zip",
-        "dependencies": ["vanillafixes"],
-        "dllsTxtAdd": ["UnitXP_SP3.dll"]
+        "dependencies": [
+          "vanillafixes"
+        ],
+        "dllsTxtAdd": [
+          "UnitXP_SP3.dll"
+        ]
       },
       {
         "id": "vanilla_helpers",
-        "displayName": "Vanilla Helpers (shared HD assets)",
-        "version": "1.4.0",
-        "kind": "Mpq",
-        "destination": "Data/patch-V.mpq",
-        "category": "Graphics",
-        "description": "Shared models, textures and DBC corrections the high-definition patches build on. Enabling an HD patch pulls this in automatically."
+        "displayName": "VanillaHelpers",
+        "version": "1.1.2",
+        "kind": "Dll",
+        "destination": "VanillaHelpers.dll",
+        "category": "Client extension",
+        "description": "Raises the client's texture size and memory limits and adds the file helpers the high-definition patches rely on. Loaded by VanillaFixes through dlls.txt. Enabling an HD patch pulls this in automatically.",
+        "gitHubRepo": "isfir/VanillaHelpers",
+        "assetContains": "VanillaHelpers*.dll",
+        "dependencies": [
+          "vanillafixes"
+        ],
+        "dllsTxtAdd": [
+          "VanillaHelpers.dll"
+        ]
       },
       {
         "id": "vanilla_tweaks",
@@ -115,23 +145,197 @@
       },
       {
         "id": "hd_patch_a",
-        "displayName": "HD Character Models",
-        "version": "3.1.0",
+        "displayName": "HD Characters & NPCs",
+        "version": "latest",
         "kind": "Mpq",
         "destination": "Data/patch-A.mpq",
         "category": "Graphics",
-        "description": "High-definition player and creature models. Large download; needs the shared HD assets patch.",
-        "dependencies": ["vanilla_helpers"]
+        "description": "High-definition player and NPC models, including the custom races. Base layer for Patch-L, T and U. Part of Project Reforged by Stormhand81 (projectreforged.github.io).",
+        "downloadUrl": "https://pub-0f05631d243e4046993fc02ca7be9542.r2.dev/patches/patch-A.mpq",
+        "dependencies": [
+          "vanilla_helpers"
+        ]
       },
       {
         "id": "hd_patch_b",
-        "displayName": "HD World Textures",
-        "version": "3.1.0",
+        "displayName": "HD Buildings",
+        "version": "latest",
         "kind": "Mpq",
         "destination": "Data/patch-B.mpq",
         "category": "Graphics",
-        "description": "Higher resolution terrain, building and doodad textures for the classic zones.",
-        "dependencies": ["vanilla_helpers"]
+        "description": "High-definition building models and textures. Part of the environment set: always installed together with Doodads and Environment. Part of Project Reforged by Stormhand81 (projectreforged.github.io).",
+        "downloadUrl": "https://pub-0f05631d243e4046993fc02ca7be9542.r2.dev/patches/patch-B.mpq",
+        "dependencies": [
+          "vanilla_helpers",
+          "hd_patch_d",
+          "hd_patch_e"
+        ]
+      },
+      {
+        "id": "hd_patch_c",
+        "displayName": "HD Creatures",
+        "version": "latest",
+        "kind": "Mpq",
+        "destination": "Data/patch-C.mpq",
+        "category": "Graphics",
+        "description": "High-definition creature models and textures. Part of Project Reforged by Stormhand81 (projectreforged.github.io).",
+        "downloadUrl": "https://pub-0f05631d243e4046993fc02ca7be9542.r2.dev/patches/patch-C.mpq",
+        "dependencies": [
+          "vanilla_helpers"
+        ]
+      },
+      {
+        "id": "hd_patch_d",
+        "displayName": "HD Doodads",
+        "version": "latest",
+        "kind": "Mpq",
+        "destination": "Data/patch-D.mpq",
+        "category": "Graphics",
+        "description": "High-definition world props and doodads. Part of the environment set: always installed together with Buildings and Environment. Part of Project Reforged by Stormhand81 (projectreforged.github.io).",
+        "downloadUrl": "https://pub-0f05631d243e4046993fc02ca7be9542.r2.dev/patches/patch-D.mpq",
+        "dependencies": [
+          "vanilla_helpers",
+          "hd_patch_b",
+          "hd_patch_e"
+        ]
+      },
+      {
+        "id": "hd_patch_e",
+        "displayName": "HD Environment",
+        "version": "latest",
+        "kind": "Mpq",
+        "destination": "Data/patch-E.mpq",
+        "category": "Graphics",
+        "description": "High-definition terrain, foliage and skies, including fog pushback. Part of the environment set: always installed together with Buildings and Doodads. Part of Project Reforged by Stormhand81 (projectreforged.github.io).",
+        "downloadUrl": "https://pub-0f05631d243e4046993fc02ca7be9542.r2.dev/patches/patch-E.mpq",
+        "dependencies": [
+          "vanilla_helpers",
+          "hd_patch_b",
+          "hd_patch_d"
+        ]
+      },
+      {
+        "id": "hd_patch_g",
+        "displayName": "HD Gear & Weapons",
+        "version": "latest",
+        "kind": "Mpq",
+        "destination": "Data/patch-G.mpq",
+        "category": "Graphics",
+        "description": "High-definition armor and weapon models. Part of Project Reforged by Stormhand81 (projectreforged.github.io).",
+        "downloadUrl": "https://pub-0f05631d243e4046993fc02ca7be9542.r2.dev/patches/patch-G.mpq",
+        "dependencies": [
+          "vanilla_helpers"
+        ]
+      },
+      {
+        "id": "hd_patch_i",
+        "displayName": "HD Interface",
+        "version": "latest",
+        "kind": "Mpq",
+        "destination": "Data/patch-I.mpq",
+        "category": "Graphics",
+        "description": "High-definition interface art, including SuperWoW selection circle textures. Part of Project Reforged by Stormhand81 (projectreforged.github.io).",
+        "downloadUrl": "https://pub-0f05631d243e4046993fc02ca7be9542.r2.dev/patches/patch-I.mpq",
+        "dependencies": [
+          "vanilla_helpers"
+        ]
+      },
+      {
+        "id": "hd_patch_l",
+        "displayName": "HD Extras for Female Models",
+        "version": "latest",
+        "kind": "Mpq",
+        "destination": "Data/patch-L.mpq",
+        "category": "Graphics",
+        "description": "Optional female model adjustments on top of HD Characters & NPCs. Part of Project Reforged by Stormhand81 (projectreforged.github.io).",
+        "downloadUrl": "https://pub-0f05631d243e4046993fc02ca7be9542.r2.dev/patches/patch-L.mpq",
+        "dependencies": [
+          "vanilla_helpers",
+          "hd_patch_a"
+        ]
+      },
+      {
+        "id": "hd_patch_m",
+        "displayName": "HD Maps & Loading Screens",
+        "version": "latest",
+        "kind": "Mpq",
+        "destination": "Data/patch-M.mpq",
+        "category": "Graphics",
+        "description": "High-resolution world maps and loading screens. Part of Project Reforged by Stormhand81 (projectreforged.github.io).",
+        "downloadUrl": "https://pub-0f05631d243e4046993fc02ca7be9542.r2.dev/patches/patch-M.mpq",
+        "dependencies": [
+          "vanilla_helpers"
+        ]
+      },
+      {
+        "id": "hd_patch_n",
+        "displayName": "Darker Nights",
+        "version": "latest",
+        "kind": "Mpq",
+        "destination": "Data/patch-N.mpq",
+        "category": "Graphics",
+        "description": "Darker night-time lighting. Part of Project Reforged by Stormhand81 (projectreforged.github.io).",
+        "downloadUrl": "https://pub-0f05631d243e4046993fc02ca7be9542.r2.dev/patches/patch-N.mpq",
+        "dependencies": [
+          "vanilla_helpers"
+        ]
+      },
+      {
+        "id": "hd_patch_p",
+        "displayName": "HD Spell Effects",
+        "version": "latest",
+        "kind": "Mpq",
+        "destination": "Data/patch-P.mpq",
+        "category": "Graphics",
+        "description": "Reworked spell particle effects. Part of Project Reforged by Stormhand81 (projectreforged.github.io).",
+        "downloadUrl": "https://pub-0f05631d243e4046993fc02ca7be9542.r2.dev/patches/patch-P.mpq",
+        "dependencies": [
+          "vanilla_helpers"
+        ]
+      },
+      {
+        "id": "hd_patch_s",
+        "displayName": "HD Sounds & Music",
+        "version": "latest",
+        "kind": "Mpq",
+        "destination": "Data/patch-S.mpq",
+        "category": "Graphics",
+        "description": "Remastered sounds and music. Part of Project Reforged by Stormhand81 (projectreforged.github.io).",
+        "downloadUrl": "https://pub-0f05631d243e4046993fc02ca7be9542.r2.dev/patches/patch-S.mpq",
+        "dependencies": [
+          "vanilla_helpers"
+        ]
+      },
+      {
+        "id": "hd_patch_t",
+        "displayName": "HD Character Textures",
+        "version": "latest",
+        "kind": "Mpq",
+        "destination": "Data/patch-T.mpq",
+        "category": "Graphics",
+        "description": "High-definition textures for characters and gear (Ultra Base build). Works on its own and is the base for Ultra HD Textures. Part of Project Reforged by Stormhand81 (projectreforged.github.io).",
+        "downloadUrl": "https://pub-0f05631d243e4046993fc02ca7be9542.r2.dev/patches/patch-T.mpq",
+        "dependencies": [
+          "vanilla_helpers",
+          "hd_patch_a",
+          "hd_patch_g"
+        ]
+      },
+      {
+        "id": "hd_patch_u",
+        "displayName": "Ultra HD Textures",
+        "version": "latest",
+        "kind": "Mpq",
+        "destination": "Data/patch-U.mpq",
+        "category": "Graphics",
+        "description": "Maximum-detail textures built on HD Character Textures. Very large and memory hungry. Part of Project Reforged by Stormhand81 (projectreforged.github.io).",
+        "downloadUrl": "https://pub-0f05631d243e4046993fc02ca7be9542.r2.dev/patches/patch-U.mpq",
+        "dependencies": [
+          "vanilla_helpers",
+          "hd_patch_a",
+          "hd_patch_g",
+          "hd_patch_t"
+        ]
       },
       {
         "id": "raid_visuals",
@@ -181,7 +385,9 @@
         "category": "Graphics",
         "description": "Translates the client's Direct3D 9 calls to Vulkan. Conflicts with VanillaFixes on most drivers, so only one of the two can be active. Not installable from the launcher yet.",
         "gitHubRepo": "doitsujin/dxvk",
-        "conflicts": ["vanillafixes"]
+        "conflicts": [
+          "vanillafixes"
+        ]
       }
     ]
   }
